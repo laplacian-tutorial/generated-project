@@ -1,0 +1,19 @@
+project:
+  group: laplacian-tutorial
+  name: projects
+  type: project-group
+  version: '1.0.0'
+  description:
+    en: |
+      laplacian-tutorial projects.
+  module_repositories:
+    local:
+      ../mvn-repo
+    remote:
+    - https://raw.github.com/nabla-squared/mvn-repo/master
+  models:
+  - group: 'laplacian-arch'
+    name: 'project-types'
+    version: '1.0.0'
+  model_files:
+  - dest/model
