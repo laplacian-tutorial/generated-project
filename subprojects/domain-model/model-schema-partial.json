@@ -183,6 +183,54 @@
         "$ref": "#/definitions/entities/value_domain_type"
       }
     }
+    ,
+    "albums": {
+      "description": "album",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/album"
+      }
+    }
+    ,
+    "comments": {
+      "description": "comment",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/comment"
+      }
+    }
+    ,
+    "photos": {
+      "description": "photo",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/photo"
+      }
+    }
+    ,
+    "posts": {
+      "description": "post",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/post"
+      }
+    }
+    ,
+    "tasks": {
+      "description": "task",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/task"
+      }
+    }
+    ,
+    "users": {
+      "description": "user",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/user"
+      }
+    }
   },
   "definitions": {
     "value_domain_types": {
@@ -400,6 +448,11 @@
       "namespace": {
         "description": "名前空間",
         "pattern": "^[_a-zA-Z][_$a-zA-Z0-9]*(\\.[_a-zA-Z][_$a-zA-Z0-9]*)*$",
+        "type": "string"
+      },
+      "date": {
+        "description": "ISO 8601 date format",
+        "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])T([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]{3})?$",
         "type": "string"
       }
     },
@@ -2000,6 +2053,245 @@
           "description": {
             "description": "The description of this value_item.",
             "type": "string"
+          }
+        }
+      },
+      "address": {
+        "description": "address",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "street": {
+            "description": "The street of this address.",
+            "type": "string"
+          },
+          "suite": {
+            "description": "The suite of this address.",
+            "type": "string"
+          },
+          "city": {
+            "description": "The city of this address.",
+            "type": "string"
+          },
+          "zipcode": {
+            "description": "The zipcode of this address.",
+            "type": "string"
+          },
+          "latitude": {
+            "description": "The latitude of this address.",
+            "type": "string"
+          },
+          "longitude": {
+            "description": "The longitude of this address.",
+            "type": "string"
+          }
+        }
+      },
+      "album": {
+        "description": "album",
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "The id of this album.",
+            "type": "number"
+          },
+          "user_id": {
+            "description": "The user_id of this album.",
+            "type": "number"
+          },
+          "title": {
+            "description": "The title of this album.",
+            "type": "string"
+          }
+        }
+      },
+      "comment": {
+        "description": "comment",
+        "type": "object",
+        "required": [
+          "post_id",
+          "seq_number"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "post_id": {
+            "description": "The post_id of this comment.",
+            "type": "number"
+          },
+          "seq_number": {
+            "description": "The seq_number of this comment.",
+            "type": "number"
+          },
+          "name": {
+            "description": "The name of this comment.",
+            "type": "string"
+          },
+          "email": {
+            "description": "The email of this comment.",
+            "type": "string"
+          },
+          "body": {
+            "description": "The body of this comment.",
+            "type": "string"
+          }
+        }
+      },
+      "company": {
+        "description": "company",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this company.",
+            "type": "string"
+          },
+          "catch_phrase": {
+            "description": "The catch_phrase of this company.",
+            "type": "string"
+          },
+          "bs": {
+            "description": "The bs of this company.",
+            "type": "string"
+          }
+        }
+      },
+      "photo": {
+        "description": "photo",
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "The id of this photo.",
+            "type": "number"
+          },
+          "album_id": {
+            "description": "The album_id of this photo.",
+            "type": "number"
+          },
+          "title": {
+            "description": "The title of this photo.",
+            "type": "string"
+          },
+          "url": {
+            "description": "The url of this photo.",
+            "type": "string"
+          },
+          "thumbnail_url": {
+            "description": "The thumbnailUrl of this photo.",
+            "type": "string"
+          },
+          "date_taken": {
+            "allOf": [{
+            "description": "The date_taken of this photo.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/date"
+            }]
+          }
+        }
+      },
+      "post": {
+        "description": "post",
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "The id of this post.",
+            "type": "number"
+          },
+          "user_id": {
+            "description": "The user_id of this post.",
+            "type": "number"
+          },
+          "title": {
+            "description": "The title of this post.",
+            "type": "string"
+          },
+          "body": {
+            "description": "The body of this post.",
+            "type": "string"
+          }
+        }
+      },
+      "task": {
+        "description": "task",
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "The id of this task.",
+            "type": "number"
+          },
+          "user_id": {
+            "description": "The user_id of this task.",
+            "type": "number"
+          },
+          "title": {
+            "description": "The title of this task.",
+            "type": "string"
+          },
+          "completed": {
+            "description": "Defines this task is completed or not.",
+            "type": "boolean"
+          }
+        }
+      },
+      "user": {
+        "description": "user",
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "The id of this user.",
+            "type": "number"
+          },
+          "name": {
+            "description": "The name of this user.",
+            "type": "string"
+          },
+          "username": {
+            "description": "The username of this user.",
+            "type": "string"
+          },
+          "email": {
+            "description": "The email of this user.",
+            "type": "string"
+          },
+          "phone": {
+            "description": "The phone of this user.",
+            "type": "string"
+          },
+          "website": {
+            "description": "The website of this user.",
+            "type": "string"
+          },
+          "address": {
+            "description": "address",
+            "$ref": "#/definitions/entities/address"
+          },
+          "company": {
+            "description": "company",
+            "$ref": "#/definitions/entities/company"
           }
         }
       }
