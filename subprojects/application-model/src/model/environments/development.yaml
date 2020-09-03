@@ -1,0 +1,9 @@
+environments:
+- tier: development
+  name: development
+
+  deployments:
+   - name: tutorial_api
+     type: container_on_gcp_cloudrun
+   - name: tutorial_test_db
+     type: container_on_gce_instance

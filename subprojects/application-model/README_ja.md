@@ -162,6 +162,12 @@ $ ./script/generate
 
 
 - [model/project.yaml](<./model/project.yaml>)
+- [src/model/components/tutorial_api.yaml](<./src/model/components/tutorial_api.yaml>)
+- [src/model/components/tutorial_test_db.yaml](<./src/model/components/tutorial_test_db.yaml>)
+- [src/model/environments/development.yaml](<./src/model/environments/development.yaml>)
+- [src/model/environments/local.yaml](<./src/model/environments/local.yaml>)
+- [src/model/graphql-types/graphql-types.yaml](<./src/model/graphql-types/graphql-types.yaml>)
+- [src/model/services/tutorial-api.yaml](<./src/model/services/tutorial-api.yaml>)
 
 ## Architecture overview
 

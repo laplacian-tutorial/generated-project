@@ -1,0 +1,15 @@
+services:
+- name: tutorial_api
+  version: '0.0.1'
+  namespace: laplacian.tutorial.api
+  datasources:
+  - type: postgres
+  graphql_type_entries:
+  - type_name: address
+  - type_name: album
+  - type_name: comment
+  - type_name: company
+  - type_name: photo
+  - type_name: post
+  - type_name: task
+  - type_name: user

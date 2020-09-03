@@ -1,0 +1,9 @@
+environments:
+- tier: local
+  name: local
+
+  deployments:
+  - name: tutorial_api
+    type: container_on_local_machine
+  - name: tutorial_test_db
+    type: container_on_local_machine
