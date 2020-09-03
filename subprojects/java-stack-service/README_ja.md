@@ -155,6 +155,12 @@ The java-stack-service project.
 
 
 - [model/project.yaml](<./model/project.yaml>)
+- [model/test-data/albums.yaml](<./model/test-data/albums.yaml>)
+- [model/test-data/comments.yaml](<./model/test-data/comments.yaml>)
+- [model/test-data/photos.yaml](<./model/test-data/photos.yaml>)
+- [model/test-data/posts.yaml](<./model/test-data/posts.yaml>)
+- [model/test-data/tasks.yaml](<./model/test-data/tasks.yaml>)
+- [model/test-data/users.yaml](<./model/test-data/users.yaml>)
 
 
 <!-- @main-content@ -->
