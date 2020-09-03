@@ -45,6 +45,10 @@ The following graph shows the dependencies between each project.
 
 > The application-model project.
 > 
+- [**laplacian-tutorial/java-stack-service**](<>)
+
+> The java-stack-service project.
+> 
 - [**laplacian-tutorial/domain-model**](<>)
 
 > The domain-model project.
@@ -397,6 +401,28 @@ The following graph shows the dependencies between each project.
   >
   >   Delete all local resources of the subproject and regenerate them.
   >   
+- [./script/generate-java-stack-service.sh](<./scripts/generate-java-stack-service.sh>)
+
+  Generates the [laplacian-tutorial/java-stack-service](<null>) project as a subproject in the following directory.
+  ```
+  subprojects/java-stack-service
+  ```
+  If the subproject already exists, the content of the subproject is updated.
+
+  > Usage: generate-java-stack-service.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   Displays how to use this command.
+  >   
+  > -v, --verbose
+  >
+  >   Displays more detailed command execution information.
+  >   
+  > -c, --clean
+  >
+  >   Delete all local resources of the subproject and regenerate them.
+  >   
 - [./script/generate.sh](<./scripts/generate.sh>)
 
   Generates the resources in each directory of `src/` `model/` `template/` in this project.
@@ -553,12 +579,28 @@ The following graph shows the dependencies between each project.
   >
   >   Displays more detailed command execution information.
   >   
+- [./script/publish-local-java-stack-service.sh](<./scripts/publish-local-java-stack-service.sh>)
+
+  Generates resources for the [laplacian-tutorial/java-stack-service](<null>) subproject.
+
+  > Usage: publish-local-java-stack-service.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   Displays how to use this command.
+  >   
+  > -v, --verbose
+  >
+  >   Displays more detailed command execution information.
+  >   
 ### Source code list
 
 
 - [model/project/subprojects/application-model.yaml](<./model/project/subprojects/application-model.yaml>)
+- [model/project/subprojects/java-stack-service.yaml](<./model/project/subprojects/java-stack-service.yaml>)
 - [model/project/subprojects/laplacian-tutorial/application-model.yaml](<./model/project/subprojects/laplacian-tutorial/application-model.yaml>)
 - [model/project/subprojects/laplacian-tutorial/domain-model.yaml](<./model/project/subprojects/laplacian-tutorial/domain-model.yaml>)
+- [model/project/subprojects/laplacian-tutorial/java-stack-service.yaml](<./model/project/subprojects/laplacian-tutorial/java-stack-service.yaml>)
 - [model/project.yaml](<./model/project.yaml>)
 
 

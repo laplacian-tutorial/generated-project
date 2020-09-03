@@ -1,0 +1,29 @@
+project:
+  group: laplacian-tutorial
+  name: java-stack-service
+  type: java-stack-service
+  namespace: laplacian.tutorial
+  version: '0.0.1'
+  description:
+    en: |
+      The java-stack-service project.
+    ja: |
+      The java-stack-service project.
+    zh: |
+      The java-stack-service project.
+  module_repositories:
+    local:
+      ../../../mvn-repo
+    remote:
+    - https://raw.github.com/nabla-squared/mvn-repo/master
+  plugins:
+  - group: laplacian-tutorial
+    name: domain-model-plugin
+    version: '0.0.1'
+  models:
+  - group: laplacian-tutorial
+    name: domain-model
+    version: '0.0.1'
+  - group: laplacian-tutorial
+    name: application-model
+    version: '0.0.1'

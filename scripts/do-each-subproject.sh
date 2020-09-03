@@ -15,6 +15,7 @@ CONTINUE_ON_ERROR=
 
 # @main@
 SUBPROJECTS='subprojects/application-model
+subprojects/java-stack-service
 subprojects/domain-model
 '
 

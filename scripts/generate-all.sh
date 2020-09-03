@@ -15,6 +15,7 @@ CONTINUE_ON_ERROR=
 
 # @main@
 SCRIPTS='generate-laplacian-tutorial-application-model
+generate-laplacian-tutorial-java-stack-service
 generate-laplacian-tutorial-domain-model
 '
 

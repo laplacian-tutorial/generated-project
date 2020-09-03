@@ -45,6 +45,10 @@ laplacian-tutorial projects.
 
 > The application-model project.
 > 
+- [**laplacian-tutorial/java-stack-service**](<>)
+
+> The java-stack-service project.
+> 
 - [**laplacian-tutorial/domain-model**](<>)
 
 > The domain-model project.
@@ -397,6 +401,28 @@ laplacian-tutorial projects.
   >
   >   サブプロジェクトのローカルにある資源を全て削除してから再生成します。
   >   
+- [./script/generate-java-stack-service.sh](<./scripts/generate-java-stack-service.sh>)
+
+  [laplacian-tutorial/java-stack-service](<null>)プロジェクトをサブプロジェクトとして下記のディレクトリに生成します。
+  ```
+  subprojects/java-stack-service
+  ```
+  すでにそのサブプロジェクトが存在する場合はその内容を更新します。
+
+  > Usage: generate-java-stack-service.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   このコマンドの使用方法を表示します。
+  >   
+  > -v, --verbose
+  >
+  >   より詳細なコマンドの実行情報を表示します。
+  >   
+  > -c, --clean
+  >
+  >   サブプロジェクトのローカルにある資源を全て削除してから再生成します。
+  >   
 - [./script/generate.sh](<./scripts/generate.sh>)
 
   このプロジェクト内の資源を自動生成します。
@@ -545,12 +571,28 @@ laplacian-tutorial projects.
   >
   >   より詳細なコマンドの実行情報を表示します。
   >   
+- [./script/publish-local-java-stack-service.sh](<./scripts/publish-local-java-stack-service.sh>)
+
+  [laplacian-tutorial/java-stack-service](<null>)サブプロジェクトの資源を自動生成します。
+
+  > Usage: publish-local-java-stack-service.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   このコマンドの使用方法を表示します。
+  >   
+  > -v, --verbose
+  >
+  >   より詳細なコマンドの実行情報を表示します。
+  >   
 ### ソースコード一覧
 
 
 - [model/project/subprojects/application-model.yaml](<./model/project/subprojects/application-model.yaml>)
+- [model/project/subprojects/java-stack-service.yaml](<./model/project/subprojects/java-stack-service.yaml>)
 - [model/project/subprojects/laplacian-tutorial/application-model.yaml](<./model/project/subprojects/laplacian-tutorial/application-model.yaml>)
 - [model/project/subprojects/laplacian-tutorial/domain-model.yaml](<./model/project/subprojects/laplacian-tutorial/domain-model.yaml>)
+- [model/project/subprojects/laplacian-tutorial/java-stack-service.yaml](<./model/project/subprojects/laplacian-tutorial/java-stack-service.yaml>)
 - [model/project.yaml](<./model/project.yaml>)
 
 

@@ -5,34 +5,37 @@ PROJECT_BASE_DIR=$(cd $"${BASH_SOURCE%/*}/../" && pwd)
 SCRIPT_BASE_DIR="$PROJECT_BASE_DIR/scripts"
 
 
-OPT_NAMES='hvc-:'
+OPT_NAMES='hv-:'
 
 ARGS=
 HELP=
 VERBOSE=
-CONTINUE_ON_ERROR=
 
 
 # @main@
-SUBPROJECTS='subprojects/application-model
-subprojects/java-stack-service
-subprojects/domain-model
-'
+DEPLOYMENT_BASE_DIR=$PROJECT_BASE_DIR/dest/development/
+main () {
+  build_container_images
+  run
+}
 
-main() {
-  for subproject in $SUBPROJECTS
-  do
-    local path="$PROJECT_BASE_DIR/$subproject"
-    if [[ -d "$path/.git" ]]
-    then
-      echo "
-      === $subproject ===
-      "
-      (cd $path
-        git $ARGS
-      )
-    fi
-  done
+build_container_images() {
+  (cd $DEPLOYMENT_BASE_DIR/tutorial-api-default-datasource-migrate
+    ./gradlew build
+  )
+  (cd $DEPLOYMENT_BASE_DIR/tutorial-api
+    ./gradlew build
+  )
+}
+
+
+run() {
+  (cd $DEPLOYMENT_BASE_DIR
+    docker-compose \
+      up \
+      --force-recreate \
+      --build
+  )
 }
 # @main@
 
@@ -49,8 +52,6 @@ parse_args() {
         HELP='yes';;
       verbose)
         VERBOSE='yes';;
-      continue-on-error)
-        CONTINUE_ON_ERROR='yes';;
       *)
         echo "ERROR: Unknown OPTION --$OPTARG" >&2
         exit 1
@@ -58,7 +59,6 @@ parse_args() {
       ;;
     h) HELP='yes';;
     v) VERBOSE='yes';;
-    c) CONTINUE_ON_ERROR='yes';;
     esac
   done
   ARGS=$@
@@ -66,13 +66,11 @@ parse_args() {
 
 show_usage () {
 cat << 'END'
-Usage: ./scripts/git-each-subproject.sh [OPTION]...
+Usage: ./scripts/deploy-on-development.sh [OPTION]...
   -h, --help
     Displays how to use this command.
   -v, --verbose
     Displays more detailed command execution information.
-  -c, --continue-on-error
-    Even if the given command fails in a subproject in the middle, executes it for the remaining subprojects.
 END
 }
 

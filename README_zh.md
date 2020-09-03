@@ -45,6 +45,10 @@ laplacian-tutorial projects.
 
 > The application-model project.
 > 
+- [**laplacian-tutorial/java-stack-service**](<>)
+
+> The java-stack-service project.
+> 
 - [**laplacian-tutorial/domain-model**](<>)
 
 > The domain-model project.
@@ -397,6 +401,28 @@ laplacian-tutorial projects.
   >
   >   删除子项目的所有本地资源，并对其进行再生。
   >   
+- [./script/generate-java-stack-service.sh](<./scripts/generate-java-stack-service.sh>)
+
+  在下面的目录中生成[laplacian-tutorial/java-stack-service](<null>)项目，作为子项目。
+  ```
+  subprojects/java-stack-service
+  ```
+  如果子项目已经存在，则更新子项目的内容。
+
+  > Usage: generate-java-stack-service.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   显示如何使用此命令。
+  >   
+  > -v, --verbose
+  >
+  >   显示更详细的命令执行信息。
+  >   
+  > -c, --clean
+  >
+  >   删除子项目的所有本地资源，并对其进行再生。
+  >   
 - [./script/generate.sh](<./scripts/generate.sh>)
 
   生成本项目中每个`src/` `model/` `template/`目录下的资源。
@@ -544,12 +570,28 @@ laplacian-tutorial projects.
   >
   >   显示更详细的命令执行信息。
   >   
+- [./script/publish-local-java-stack-service.sh](<./scripts/publish-local-java-stack-service.sh>)
+
+  为[laplacian-tutorial/java-stack-service](<null>)子项目生成资源。
+
+  > Usage: publish-local-java-stack-service.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   显示如何使用此命令。
+  >   
+  > -v, --verbose
+  >
+  >   显示更详细的命令执行信息。
+  >   
 ### 源码列表
 
 
 - [model/project/subprojects/application-model.yaml](<./model/project/subprojects/application-model.yaml>)
+- [model/project/subprojects/java-stack-service.yaml](<./model/project/subprojects/java-stack-service.yaml>)
 - [model/project/subprojects/laplacian-tutorial/application-model.yaml](<./model/project/subprojects/laplacian-tutorial/application-model.yaml>)
 - [model/project/subprojects/laplacian-tutorial/domain-model.yaml](<./model/project/subprojects/laplacian-tutorial/domain-model.yaml>)
+- [model/project/subprojects/laplacian-tutorial/java-stack-service.yaml](<./model/project/subprojects/laplacian-tutorial/java-stack-service.yaml>)
 - [model/project.yaml](<./model/project.yaml>)
 
 

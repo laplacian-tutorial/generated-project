@@ -1,0 +1,9 @@
+region = "us-central1"
+zone = "b"
+credentials_path = "../../.gcloud/CREDENTIALS.json"
+cos_image="cos-stable-81-12871-181-0"
+tutorial_api_image="gcr.io/laplacian-tutorial/tutorial-api:latest"
+null_port=5432
+null_user=""
+null_pass=""
+null_machine_type="f1-micro"

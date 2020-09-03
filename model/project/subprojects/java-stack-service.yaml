@@ -1,0 +1,28 @@
+_description: &description
+  en: |
+    The api-service project.
+
+_project: &project
+  group: laplacian-tutorial
+  type: java-stack-service
+  name: java-stack-service
+  namespace: laplacian.tutorial
+  description: *description
+  version: '0.0.1'
+  # Insert the following lines into your project file.
+  # From here...
+  plugins:
+  - group: laplacian-tutorial
+    name: domain-model-plugin
+    version: '0.0.1'
+  models:
+  - group: laplacian-tutorial
+    name: domain-model
+    version: '0.0.1'
+  - group: laplacian-tutorial
+    name: application-model
+    version: '0.0.1'
+  # ... to here.
+project:
+  subprojects:
+  - *project
