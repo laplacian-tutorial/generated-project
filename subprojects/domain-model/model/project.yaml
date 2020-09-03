@@ -1,0 +1,20 @@
+project:
+  group: laplacian-tutorial
+  name: domain-model
+  type: domain-model
+  namespace: laplacian.tutorial
+  version: '0.0.1'
+  description:
+    en: |
+      The domain-model project.
+    ja: |
+      The domain-model project.
+    zh: |
+      The domain-model project.
+  module_repositories:
+    local:
+      ../../../mvn-repo
+    remote:
+    - https://raw.github.com/nabla-squared/mvn-repo/master
+  model_files:
+  - 'dest/model'

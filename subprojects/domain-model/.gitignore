@@ -34,9 +34,6 @@ out/
 .NEXT/
 .PREV/
 /dest/
-subprojects/mvn-repo/
-subprojects/mvn-repo
-
 
 
 # GCP
