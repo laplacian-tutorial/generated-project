@@ -41,6 +41,10 @@ The following graph shows the dependencies between each project.
 ### Project list
 
 
+- [**laplacian-tutorial/application-model**](<>)
+
+> The application-model project.
+> 
 - [**laplacian-tutorial/domain-model**](<>)
 
 > The domain-model project.
@@ -349,6 +353,28 @@ The following graph shows the dependencies between each project.
   >
   >   Even if the given command fails in a subproject in the middle, executes it for the remaining subprojects.
   >   
+- [./script/generate-application-model.sh](<./scripts/generate-application-model.sh>)
+
+  Generates the [laplacian-tutorial/application-model](<null>) project as a subproject in the following directory.
+  ```
+  subprojects/application-model
+  ```
+  If the subproject already exists, the content of the subproject is updated.
+
+  > Usage: generate-application-model.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   Displays how to use this command.
+  >   
+  > -v, --verbose
+  >
+  >   Displays more detailed command execution information.
+  >   
+  > -c, --clean
+  >
+  >   Delete all local resources of the subproject and regenerate them.
+  >   
 - [./script/generate-domain-model.sh](<./scripts/generate-domain-model.sh>)
 
   Generates the [laplacian-tutorial/domain-model](<null>) project as a subproject in the following directory.
@@ -499,6 +525,20 @@ The following graph shows the dependencies between each project.
   >   The path to the local repository where the built module will be stored.
   >   If the repository does not exist in the specified path, it will be created automatically.
   >   
+- [./script/publish-local-application-model.sh](<./scripts/publish-local-application-model.sh>)
+
+  Generates resources for the [laplacian-tutorial/application-model](<null>) subproject.
+
+  > Usage: publish-local-application-model.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   Displays how to use this command.
+  >   
+  > -v, --verbose
+  >
+  >   Displays more detailed command execution information.
+  >   
 - [./script/publish-local-domain-model.sh](<./scripts/publish-local-domain-model.sh>)
 
   Generates resources for the [laplacian-tutorial/domain-model](<null>) subproject.
@@ -516,6 +556,8 @@ The following graph shows the dependencies between each project.
 ### Source code list
 
 
+- [model/project/subprojects/application-model.yaml](<./model/project/subprojects/application-model.yaml>)
+- [model/project/subprojects/laplacian-tutorial/application-model.yaml](<./model/project/subprojects/laplacian-tutorial/application-model.yaml>)
 - [model/project/subprojects/laplacian-tutorial/domain-model.yaml](<./model/project/subprojects/laplacian-tutorial/domain-model.yaml>)
 - [model/project.yaml](<./model/project.yaml>)
 

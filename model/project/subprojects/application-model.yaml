@@ -1,0 +1,25 @@
+_description: &description
+  en: |
+    The application-model project.
+
+_project: &project
+  group: laplacian-tutorial
+  type: application-model
+  name: application-model
+  namespace: laplacian.tutorial
+  description: *description
+  version: '0.0.1'
+  # Insert the following lines into your project file.
+  # From here...
+  plugins:
+  - group: laplacian-tutorial
+    name: domain-model-plugin
+    version: '0.0.1'
+  models:
+  - group: laplacian-tutorial
+    name: domain-model
+    version: '0.0.1'
+  # ... to here.
+project:
+  subprojects:
+  - *project

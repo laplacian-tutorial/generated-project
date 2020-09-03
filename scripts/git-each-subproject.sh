@@ -14,7 +14,8 @@ CONTINUE_ON_ERROR=
 
 
 # @main@
-SUBPROJECTS='subprojects/domain-model
+SUBPROJECTS='subprojects/application-model
+subprojects/domain-model
 '
 
 main() {

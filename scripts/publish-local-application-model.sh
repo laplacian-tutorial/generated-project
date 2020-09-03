@@ -5,30 +5,29 @@ PROJECT_BASE_DIR=$(cd $"${BASH_SOURCE%/*}/../" && pwd)
 SCRIPT_BASE_DIR="$PROJECT_BASE_DIR/scripts"
 
 
-OPT_NAMES='hvc-:'
+OPT_NAMES='hv-:'
 
 ARGS=
 HELP=
 VERBOSE=
-CONTINUE_ON_ERROR=
 
 
 # @main@
-SUBPROJECTS='subprojects/application-model
-subprojects/domain-model
-'
+SCRIPTS_DIR='scripts'
+PUBLISH_SCRIPT='publish-local.sh'
+TARGET_PROJECT_DIR="${PROJECT_BASE_DIR}/subprojects/application-model"
+TARGET_PUBLISH_SCRIPT="$TARGET_PROJECT_DIR/$SCRIPTS_DIR/$PUBLISH_SCRIPT"
 
 main() {
-  for subproject in $SUBPROJECTS
-  do
-    local path="$PROJECT_BASE_DIR/$subproject"
-    echo "
-    === $subproject ===
-    "
-    (cd $path
-      $ARGS
-    )
-  done
+  if ! [ -f $TARGET_PUBLISH_SCRIPT ]
+  then
+    run_generate
+  fi
+  $TARGET_PUBLISH_SCRIPT
+}
+
+run_generate() {
+  $PROJECT_BASE_DIR/$SCRIPTS_DIR/generate-application-model.sh
 }
 # @main@
 
@@ -45,8 +44,6 @@ parse_args() {
         HELP='yes';;
       verbose)
         VERBOSE='yes';;
-      continue-on-error)
-        CONTINUE_ON_ERROR='yes';;
       *)
         echo "ERROR: Unknown OPTION --$OPTARG" >&2
         exit 1
@@ -54,7 +51,6 @@ parse_args() {
       ;;
     h) HELP='yes';;
     v) VERBOSE='yes';;
-    c) CONTINUE_ON_ERROR='yes';;
     esac
   done
   ARGS=$@
@@ -62,13 +58,11 @@ parse_args() {
 
 show_usage () {
 cat << 'END'
-Usage: ./scripts/do-each-subproject.sh [OPTION]...
+Usage: ./scripts/publish-local-application-model.sh [OPTION]...
   -h, --help
     Displays how to use this command.
   -v, --verbose
     Displays more detailed command execution information.
-  -c, --continue-on-error
-    Even if the given command fails in a subproject in the middle, executes it for the remaining subprojects.
 END
 }
 

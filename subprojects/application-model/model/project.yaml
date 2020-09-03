@@ -1,0 +1,28 @@
+project:
+  group: laplacian-tutorial
+  name: application-model
+  type: application-model
+  namespace: laplacian.tutorial
+  version: '0.0.1'
+  description:
+    en: |
+      The application-model project.
+    ja: |
+      The application-model project.
+    zh: |
+      The application-model project.
+  module_repositories:
+    local:
+      ../../../mvn-repo
+    remote:
+    - https://raw.github.com/nabla-squared/mvn-repo/master
+  plugins:
+  - group: laplacian-tutorial
+    name: domain-model-plugin
+    version: '0.0.1'
+  models:
+  - group: laplacian-tutorial
+    name: domain-model
+    version: '0.0.1'
+  model_files:
+  - 'dest/model'

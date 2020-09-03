@@ -41,6 +41,10 @@ laplacian-tutorial projects.
 ### プロジェクト一覧
 
 
+- [**laplacian-tutorial/application-model**](<>)
+
+> The application-model project.
+> 
 - [**laplacian-tutorial/domain-model**](<>)
 
 > The domain-model project.
@@ -349,6 +353,28 @@ laplacian-tutorial projects.
   >
   >   途中のサブプロジェクトで与えられたコマンドが失敗しても、残りのサブプロジェクトに対してコマンドを実行します。
   >   
+- [./script/generate-application-model.sh](<./scripts/generate-application-model.sh>)
+
+  [laplacian-tutorial/application-model](<null>)プロジェクトをサブプロジェクトとして下記のディレクトリに生成します。
+  ```
+  subprojects/application-model
+  ```
+  すでにそのサブプロジェクトが存在する場合はその内容を更新します。
+
+  > Usage: generate-application-model.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   このコマンドの使用方法を表示します。
+  >   
+  > -v, --verbose
+  >
+  >   より詳細なコマンドの実行情報を表示します。
+  >   
+  > -c, --clean
+  >
+  >   サブプロジェクトのローカルにある資源を全て削除してから再生成します。
+  >   
 - [./script/generate-domain-model.sh](<./scripts/generate-domain-model.sh>)
 
   [laplacian-tutorial/domain-model](<null>)プロジェクトをサブプロジェクトとして下記のディレクトリに生成します。
@@ -491,6 +517,20 @@ laplacian-tutorial projects.
   >   ビルドしたモジュールを格納するローカルリポジトリのパス。
   >   指定したパスにリポジトリが存在しない場合は、自動的に作成されます。
   >   
+- [./script/publish-local-application-model.sh](<./scripts/publish-local-application-model.sh>)
+
+  [laplacian-tutorial/application-model](<null>)サブプロジェクトの資源を自動生成します。
+
+  > Usage: publish-local-application-model.sh [OPTION]...
+  >
+  > -h, --help
+  >
+  >   このコマンドの使用方法を表示します。
+  >   
+  > -v, --verbose
+  >
+  >   より詳細なコマンドの実行情報を表示します。
+  >   
 - [./script/publish-local-domain-model.sh](<./scripts/publish-local-domain-model.sh>)
 
   [laplacian-tutorial/domain-model](<null>)サブプロジェクトの資源を自動生成します。
@@ -508,6 +548,8 @@ laplacian-tutorial projects.
 ### ソースコード一覧
 
 
+- [model/project/subprojects/application-model.yaml](<./model/project/subprojects/application-model.yaml>)
+- [model/project/subprojects/laplacian-tutorial/application-model.yaml](<./model/project/subprojects/laplacian-tutorial/application-model.yaml>)
 - [model/project/subprojects/laplacian-tutorial/domain-model.yaml](<./model/project/subprojects/laplacian-tutorial/domain-model.yaml>)
 - [model/project.yaml](<./model/project.yaml>)
 
