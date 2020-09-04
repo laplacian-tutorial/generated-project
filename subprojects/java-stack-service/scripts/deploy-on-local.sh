@@ -15,11 +15,11 @@ VERBOSE=
 # @main@
 DEPLOYMENT_BASE_DIR=$PROJECT_BASE_DIR/dest/local/
 main () {
-  build_container_images
-  run
+  build_apps
+  run_local_container
 }
 
-build_container_images() {
+build_apps() {
   (cd $DEPLOYMENT_BASE_DIR/tutorial-api-default-datasource-migrate
     ./gradlew build
   )
@@ -29,7 +29,7 @@ build_container_images() {
 }
 
 
-run() {
+run_local_container() {
   (cd $DEPLOYMENT_BASE_DIR
     docker-compose \
       up \

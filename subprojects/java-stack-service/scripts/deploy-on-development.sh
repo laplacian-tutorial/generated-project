@@ -15,11 +15,13 @@ VERBOSE=
 # @main@
 DEPLOYMENT_BASE_DIR=$PROJECT_BASE_DIR/dest/development/
 main () {
-  build_container_images
-  run
+  build_apps
+  register_container_images
+  deploy_with_terraform
+  migrate_test_data
 }
 
-build_container_images() {
+build_apps() {
   (cd $DEPLOYMENT_BASE_DIR/tutorial-api-default-datasource-migrate
     ./gradlew build
   )
@@ -29,12 +31,31 @@ build_container_images() {
 }
 
 
-run() {
+
+
+register_container_images() {
   (cd $DEPLOYMENT_BASE_DIR
-    docker-compose \
-      up \
-      --force-recreate \
-      --build
+    docker-compose build
+    docker-compose push
+  )
+}
+
+deploy_with_terraform() {
+  (cd $DEPLOYMENT_BASE_DIR/terraform
+    terraform init
+    terraform apply -auto-approve
+  )
+}
+
+migrate_test_data() {
+  local datastore_ip=
+  datastore_ip=$(cd $DEPLOYMENT_BASE_DIR/terraform && terraform output tutorial_test_db_ip)
+  (cd $DEPLOYMENT_BASE_DIR/tutorial-api-default-datasource-migrate
+    java  \
+      -Ddatasource.url="jdbc:postgresql://$datastore_ip:5432/tutorial_db" \
+      -Ddatasource.username="test" \
+      -Ddatasource.password="secret" \
+      -jar ./build/libs/db-migrate-*.jar
   )
 }
 # @main@
