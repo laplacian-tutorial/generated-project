@@ -1961,6 +1961,14 @@
               "container_on_local_machine"
             ],
             "type": "string"
+          },
+          "machine_type": {
+            "description": "The machine_type of this container_on_gce_instance.",
+            "enum":[
+              "f1-micro",
+              "g1-small"
+            ],
+            "type": "string"
           }
         }
         }
@@ -2039,6 +2047,10 @@
             "description": "Defines this environment is uses_locally_built_container_images or not.",
             "type": "boolean"
           },
+          "uses_gcp": {
+            "description": "Defines this environment is uses_gcp or not.",
+            "type": "boolean"
+          },
           "deployments": {
             "description": "deployments",
             "type": "array",
@@ -2052,21 +2064,61 @@
         "description": "graphql_type",
         "type": "object",
         "required": [
+          "name"
         ],
-        "additionalProperties": false,
         "properties": {
           "name": {
             "description": "The name of this graphql_type.",
             "type": "string"
           },
-          "entity_name": {
-            "description": "The entity_name of this graphql_type.",
+          "resolver_type": {
+            "description": "The resolver_type of this graphql_type.",
+            "enum":[
+              "entity_on_database"
+            ],
             "type": "string"
           },
           "description": {
             "description": "The description of this graphql_type.",
             "type": "string"
           }
+        },
+        "allOf": [
+          { "$ref": "#/definitions/entities/entity_on_database" }
+        ]
+      },
+      "entity_on_database": {
+        "description": "entity_on_database",
+        "if": { "properties": {
+          "resolver_type": { "const": "entity_on_database" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this graphql_type.",
+            "type": "string"
+          },
+          "resolver_type": {
+            "description": "The resolver_type of this graphql_type.",
+            "enum":[
+              "entity_on_database"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_type.",
+            "type": "string"
+          },
+          "entity_name": {
+            "description": "The entity_name of this entity_on_database.",
+            "type": "string"
+          },
+          "datasource_name": {
+            "description": "The datasource_name of this entity_on_database.",
+            "type": "string"
+          }
+        }
         }
       },
       "service": {
@@ -2162,38 +2214,6 @@
           "description": {
             "description": "The description of this datasource.",
             "type": "string"
-          },
-          "hostname": {
-            "description": "The hostname of this datasource.",
-            "type": "string"
-          },
-          "port": {
-            "description": "The port of this datasource.",
-            "type": "number"
-          },
-          "jdbc_url": {
-            "description": "The jdbc_url of this datasource.",
-            "type": "string"
-          },
-          "db_name": {
-            "description": "The db_name of this datasource.",
-            "type": "string"
-          },
-          "db_user": {
-            "description": "The db_user of this datasource.",
-            "type": "string"
-          },
-          "db_password": {
-            "description": "The db_password of this datasource.",
-            "type": "string"
-          },
-          "container_name": {
-            "description": "The container_name of this datasource.",
-            "type": "string"
-          },
-          "container_image": {
-            "description": "The container_image of this datasource.",
-            "type": "string"
           }
         }
       },
@@ -2204,12 +2224,8 @@
         ],
         "additionalProperties": false,
         "properties": {
-          "type_name": {
-            "description": "The type_name of this graphql_type_entry.",
-            "type": "string"
-          },
-          "datasource_name": {
-            "description": "The datasource_name of this graphql_type_entry.",
+          "name": {
+            "description": "The name of this graphql_type_entry.",
             "type": "string"
           }
         }

@@ -1,9 +1,32 @@
 graphql_types:
-- entity_name: address
-- entity_name: album
-- entity_name: comment
-- entity_name: company
-- entity_name: photo
-- entity_name: post
-- entity_name: task
-- entity_name: user
+- name: address
+  resolver_type: entity_on_database
+  entity_name: address
+
+- name: album
+  resolver_type: entity_on_database
+  entity_name: album
+
+- name: comment
+  resolver_type: entity_on_database
+  entity_name: comment
+
+- name: company
+  resolver_type: entity_on_database
+  entity_name: company
+
+- name: photo
+  resolver_type: entity_on_database
+  entity_name: photo
+
+- name: post
+  resolver_type: entity_on_database
+  entity_name: post
+
+- name: task
+  resolver_type: entity_on_database
+  entity_name: task
+
+- name: user
+  resolver_type: entity_on_database
+  entity_name: user
