@@ -1,0 +1,74 @@
+entities:
+- name: gsheets_spreadsheet
+  namespace: laplacian.tutorial
+  description: Resource that represents a spreadsheet.
+
+  properties:
+  - name: spreadsheet_id
+    type: string
+    primary_key: true
+
+  - name: title
+    type: string
+
+  relationships:
+  - name: sheets
+    reference_entity_name: gsheets_sheet
+    cardinality: '1..*'
+    aggregate: true
+
+- name: gsheets_sheet
+  namespace: laplacian.tutorial
+  description: A sheet in a spreadsheet.
+
+  properties:
+  - name: sheet_id
+    type: string
+    primary_key: true
+
+  - name: title
+    type: string
+
+  - name: index
+    type: number
+
+  - name: hidden
+    type: boolean
+
+  relationships:
+  - name: data
+    reference_entity_name: gsheets_grid_data
+    cardinality: '1..*'
+    aggregate: true
+
+- name: gsheets_grid_data
+  namespace: laplacian.tutorial
+
+  properties:
+  - name: start_row
+    type: number
+
+  - name: start_column
+    type: number
+
+  relationships:
+  - name: row_data
+    reference_entity_name: gsheets_row_data
+    cardinality: '*'
+    aggregate: true
+
+- name: gsheets_row_data
+  namespace: laplacian.tutorial
+
+  relationships:
+  - name: values
+    reference_entity_name: gsheets_cell_data
+    cardinality: '*'
+    aggregate: true
+
+- name: gsheets_cell_data
+  namespace: laplacian.tutorial
+
+  properties:
+  - name: formatted_value
+    type: string

@@ -1,0 +1,3 @@
+rest_resources:
+- name: google_spreadsheet
+  resource_model_name: google_spreadsheet

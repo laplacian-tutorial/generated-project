@@ -192,11 +192,43 @@
       }
     }
     ,
+    "rest_resources": {
+      "description": "rest_resource",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/rest_resource"
+      }
+    }
+    ,
+    "rest_operations": {
+      "description": "rest_operation",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/rest_operation"
+      }
+    }
+    ,
+    "rest_request_parameters": {
+      "description": "rest_request_parameter",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/rest_request_parameter"
+      }
+    }
+    ,
     "services": {
       "description": "service",
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/service"
+      }
+    }
+    ,
+    "http_clients": {
+      "description": "http_client",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/http_client"
       }
     }
     ,
@@ -261,6 +293,46 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/user"
+      }
+    }
+    ,
+    "gsheets_spreadsheets": {
+      "description": "Resource that represents a spreadsheet.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_spreadsheet"
+      }
+    }
+    ,
+    "gsheets_sheets": {
+      "description": "A sheet in a spreadsheet.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_sheet"
+      }
+    }
+    ,
+    "gsheets_grid_datas": {
+      "description": "gsheets_grid_data",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_grid_data"
+      }
+    }
+    ,
+    "gsheets_row_datas": {
+      "description": "gsheets_row_data",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_row_data"
+      }
+    }
+    ,
+    "gsheets_cell_datas": {
+      "description": "gsheets_cell_data",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_cell_data"
       }
     }
   },
@@ -2094,7 +2166,8 @@
           "resolver_type": {
             "description": "The resolver_type of this graphql_type.",
             "enum":[
-              "entity_on_database"
+              "entity_on_database",
+              "external_rest_resource"
             ],
             "type": "string"
           },
@@ -2104,7 +2177,8 @@
           }
         },
         "allOf": [
-          { "$ref": "#/definitions/entities/entity_on_database" }
+          { "$ref": "#/definitions/entities/entity_on_database" },
+          { "$ref": "#/definitions/entities/external_rest_resource" }
         ]
       },
       "entity_on_database": {
@@ -2122,7 +2196,8 @@
           "resolver_type": {
             "description": "The resolver_type of this graphql_type.",
             "enum":[
-              "entity_on_database"
+              "entity_on_database",
+              "external_rest_resource"
             ],
             "type": "string"
           },
@@ -2139,6 +2214,130 @@
             "type": "string"
           }
         }
+        }
+      },
+      "external_rest_resource": {
+        "description": "external_rest_resource",
+        "if": { "properties": {
+          "resolver_type": { "const": "external_rest_resource" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this graphql_type.",
+            "type": "string"
+          },
+          "resolver_type": {
+            "description": "The resolver_type of this graphql_type.",
+            "enum":[
+              "entity_on_database",
+              "external_rest_resource"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of this graphql_type.",
+            "type": "string"
+          },
+          "rest_resource_name": {
+            "description": "The rest_resource_name of this external_rest_resource.",
+            "type": "string"
+          },
+          "http_client_name": {
+            "description": "The http_client_name of this external_rest_resource.",
+            "type": "string"
+          }
+        }
+        }
+      },
+      "rest_resource": {
+        "description": "rest_resource",
+        "type": "object",
+        "required": [
+          "name",
+          "resource_model_name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this rest_resource.",
+            "type": "string"
+          },
+          "resource_model_name": {
+            "description": "The resource_model_name of this rest_resource.",
+            "type": "string"
+          },
+          "operations": {
+            "description": "operations",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/rest_operation"
+            }
+          }
+        }
+      },
+      "rest_operation": {
+        "description": "rest_operation",
+        "type": "object",
+        "required": [
+          "method",
+          "path"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "method": {
+            "allOf": [{
+            "description": "The method of this rest_operation.",
+            "type": "string"
+            }, {
+            "$ref": "#/definitions/value_domain_types/http_method_for_rest"
+            }]
+          },
+          "path": {
+            "description": "The path of this rest_operation.",
+            "type": "string"
+          },
+          "path_parameters": {
+            "description": "path_parameters",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/rest_request_parameter"
+            }
+          },
+          "query_parameters": {
+            "description": "query_parameters",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/rest_request_parameter"
+            }
+          }
+        }
+      },
+      "rest_request_parameter": {
+        "description": "rest_request_parameter",
+        "type": "object",
+        "required": [
+          "name",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this rest_request_parameter.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this rest_request_parameter.",
+            "enum":[
+              "string",
+              "number",
+              "boolean",
+              "array",
+              "object"
+            ],
+            "type": "string"
+          }
         }
       },
       "service": {
@@ -2211,6 +2410,13 @@
             "items": {
               "$ref": "#/definitions/entities/graphql_type_entry"
             }
+          },
+          "http_clients": {
+            "description": "http_clients",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/http_client"
+            }
           }
         }
       },
@@ -2250,6 +2456,20 @@
         "properties": {
           "name": {
             "description": "The name of this graphql_type_entry.",
+            "type": "string"
+          }
+        }
+      },
+      "http_client": {
+        "description": "http_client",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this http_client.",
             "type": "string"
           }
         }
@@ -2907,6 +3127,124 @@
           "company": {
             "description": "company",
             "$ref": "#/definitions/entities/company"
+          }
+        }
+      },
+      "gsheets_spreadsheet": {
+        "description": "Resource that represents a spreadsheet.",
+        "type": "object",
+        "required": [
+          "spreadsheet_id",
+          "title"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "spreadsheet_id": {
+            "description": "The spreadsheet_id of this gsheets_spreadsheet.",
+            "type": "string"
+          },
+          "title": {
+            "description": "The title of this gsheets_spreadsheet.",
+            "type": "string"
+          },
+          "sheets": {
+            "description": "sheets",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/gsheets_sheet"
+            }
+          }
+        }
+      },
+      "gsheets_sheet": {
+        "description": "A sheet in a spreadsheet.",
+        "type": "object",
+        "required": [
+          "sheet_id",
+          "title",
+          "index",
+          "hidden"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "sheet_id": {
+            "description": "The sheet_id of this gsheets_sheet.",
+            "type": "string"
+          },
+          "title": {
+            "description": "The title of this gsheets_sheet.",
+            "type": "string"
+          },
+          "index": {
+            "description": "The index of this gsheets_sheet.",
+            "type": "number"
+          },
+          "hidden": {
+            "description": "Defines this gsheets_sheet is hidden or not.",
+            "type": "boolean"
+          },
+          "data": {
+            "description": "data",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/gsheets_grid_data"
+            }
+          }
+        }
+      },
+      "gsheets_grid_data": {
+        "description": "gsheets_grid_data",
+        "type": "object",
+        "required": [
+          "start_row",
+          "start_column"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "start_row": {
+            "description": "The start_row of this gsheets_grid_data.",
+            "type": "number"
+          },
+          "start_column": {
+            "description": "The start_column of this gsheets_grid_data.",
+            "type": "number"
+          },
+          "row_data": {
+            "description": "row_data",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/gsheets_row_data"
+            }
+          }
+        }
+      },
+      "gsheets_row_data": {
+        "description": "gsheets_row_data",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "values": {
+            "description": "values",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/gsheets_cell_data"
+            }
+          }
+        }
+      },
+      "gsheets_cell_data": {
+        "description": "gsheets_cell_data",
+        "type": "object",
+        "required": [
+          "formatted_value"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "formatted_value": {
+            "description": "The formatted_value of this gsheets_cell_data.",
+            "type": "string"
           }
         }
       }
