@@ -8,9 +8,6 @@ entities:
     type: string
     primary_key: true
 
-  - name: title
-    type: string
-
   relationships:
   - name: sheets
     reference_entity_name: gsheets_sheet

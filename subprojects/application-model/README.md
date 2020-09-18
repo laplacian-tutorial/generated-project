@@ -174,7 +174,7 @@ $ ./script/generate
 - [src/model/environments/development.yaml](<./src/model/environments/development.yaml>)
 - [src/model/environments/local.yaml](<./src/model/environments/local.yaml>)
 - [src/model/graphql-types/graphql-types.yaml](<./src/model/graphql-types/graphql-types.yaml>)
-- [src/model/rest_resource/google_spreadsheet.yaml](<./src/model/rest_resource/google_spreadsheet.yaml>)
+- [src/model/rest_resources/gsheets_spreadsheet.yaml](<./src/model/rest_resources/gsheets_spreadsheet.yaml>)
 - [src/model/services/tutorial-api.yaml](<./src/model/services/tutorial-api.yaml>)
 
 ## Architecture overview

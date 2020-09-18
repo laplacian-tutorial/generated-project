@@ -13,3 +13,6 @@ services:
   - name: post
   - name: task
   - name: user
+  - name: gsheets_spreadsheet
+  http_clients:
+  - name: google_sheets_api

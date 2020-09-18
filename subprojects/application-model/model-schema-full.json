@@ -176,6 +176,14 @@
       }
     }
     ,
+    "http_client_settings": {
+      "description": "http_client_setting",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/http_client_setting"
+      }
+    }
+    ,
     "environments": {
       "description": "environment",
       "type": "array",
@@ -197,14 +205,6 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/rest_resource"
-      }
-    }
-    ,
-    "rest_operations": {
-      "description": "rest_operation",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/rest_operation"
       }
     }
     ,
@@ -1981,6 +1981,13 @@
             "items": {
               "$ref": "#/definitions/entities/datasource_mapping"
             }
+          },
+          "http_client_settings": {
+            "description": "http_client_settings",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/http_client_setting"
+            }
           }
         }
         }
@@ -1999,6 +2006,29 @@
           },
           "component_name": {
             "description": "The component_name of this datasource_mapping.",
+            "type": "string"
+          }
+        }
+      },
+      "http_client_setting": {
+        "description": "http_client_setting",
+        "type": "object",
+        "required": [
+          "name",
+          "base_url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this http_client_setting.",
+            "type": "string"
+          },
+          "base_url": {
+            "description": "The base_url of this http_client_setting.",
+            "type": "string"
+          },
+          "api_key": {
+            "description": "The api_key of this http_client_setting.",
             "type": "string"
           }
         }
@@ -2167,7 +2197,7 @@
             "description": "The resolver_type of this graphql_type.",
             "enum":[
               "entity_on_database",
-              "external_rest_resource"
+              "external_rest_api"
             ],
             "type": "string"
           },
@@ -2178,7 +2208,7 @@
         },
         "allOf": [
           { "$ref": "#/definitions/entities/entity_on_database" },
-          { "$ref": "#/definitions/entities/external_rest_resource" }
+          { "$ref": "#/definitions/entities/external_rest_api" }
         ]
       },
       "entity_on_database": {
@@ -2197,7 +2227,7 @@
             "description": "The resolver_type of this graphql_type.",
             "enum":[
               "entity_on_database",
-              "external_rest_resource"
+              "external_rest_api"
             ],
             "type": "string"
           },
@@ -2216,10 +2246,10 @@
         }
         }
       },
-      "external_rest_resource": {
-        "description": "external_rest_resource",
+      "external_rest_api": {
+        "description": "external_rest_api",
         "if": { "properties": {
-          "resolver_type": { "const": "external_rest_resource" }
+          "resolver_type": { "const": "external_rest_api" }
         }},
         "then": {
         "additionalProperties": false,
@@ -2232,7 +2262,7 @@
             "description": "The resolver_type of this graphql_type.",
             "enum":[
               "entity_on_database",
-              "external_rest_resource"
+              "external_rest_api"
             ],
             "type": "string"
           },
@@ -2241,11 +2271,11 @@
             "type": "string"
           },
           "rest_resource_name": {
-            "description": "The rest_resource_name of this external_rest_resource.",
+            "description": "The rest_resource_name of this external_rest_api.",
             "type": "string"
           },
-          "http_client_name": {
-            "description": "The http_client_name of this external_rest_resource.",
+          "operation_name": {
+            "description": "The operation_name of this external_rest_api.",
             "type": "string"
           }
         }
@@ -2256,7 +2286,8 @@
         "type": "object",
         "required": [
           "name",
-          "resource_model_name"
+          "resource_model_name",
+          "http_client_name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2266,6 +2297,10 @@
           },
           "resource_model_name": {
             "description": "The resource_model_name of this rest_resource.",
+            "type": "string"
+          },
+          "http_client_name": {
+            "description": "The http_client_name of this rest_resource.",
             "type": "string"
           },
           "operations": {
@@ -2282,7 +2317,8 @@
         "type": "object",
         "required": [
           "method",
-          "path"
+          "path",
+          "name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2296,6 +2332,10 @@
           },
           "path": {
             "description": "The path of this rest_operation.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of this rest_operation.",
             "type": "string"
           },
           "path_parameters": {
@@ -2470,6 +2510,14 @@
         "properties": {
           "name": {
             "description": "The name of this http_client.",
+            "type": "string"
+          },
+          "base_uri": {
+            "description": "The base_uri of this http_client.",
+            "type": "string"
+          },
+          "api_key": {
+            "description": "The api_key of this http_client.",
             "type": "string"
           }
         }
@@ -3134,17 +3182,12 @@
         "description": "Resource that represents a spreadsheet.",
         "type": "object",
         "required": [
-          "spreadsheet_id",
-          "title"
+          "spreadsheet_id"
         ],
         "additionalProperties": false,
         "properties": {
           "spreadsheet_id": {
             "description": "The spreadsheet_id of this gsheets_spreadsheet.",
-            "type": "string"
-          },
-          "title": {
-            "description": "The title of this gsheets_spreadsheet.",
             "type": "string"
           },
           "sheets": {

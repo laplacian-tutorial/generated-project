@@ -1,0 +1,11 @@
+rest_resources:
+- name: gsheets_spreadsheet
+  resource_model_name: gsheets_spreadsheet
+  http_client_name: google_sheets_api
+  operations:
+  - name: get_spreadsheet_by_id
+    method: GET
+    path: /spreadsheets/{spreadsheetId}
+    path_parameters:
+    - name: spreadsheetId
+      type: string

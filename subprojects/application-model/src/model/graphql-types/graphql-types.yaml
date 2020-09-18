@@ -30,3 +30,8 @@ graphql_types:
 - name: user
   resolver_type: entity_on_database
   entity_name: user
+
+- name: gsheets_spreadsheet
+  resolver_type: external_rest_api
+  rest_resource_name: gsheets_spreadsheet
+  operation_name: get_spreadsheet_by_id
