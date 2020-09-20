@@ -4,6 +4,10 @@ services:
   namespace: laplacian.tutorial.api
   datasources:
   - type: postgres
+  search_engine_clients:
+  - type: elasticsearch
+  http_clients:
+  - name: google_sheets_api
   graphql_type_entries:
   - name: address
   - name: album
@@ -14,5 +18,4 @@ services:
   - name: task
   - name: user
   - name: gsheets_spreadsheet
-  http_clients:
-  - name: google_sheets_api
+  - name: indexed_comment
