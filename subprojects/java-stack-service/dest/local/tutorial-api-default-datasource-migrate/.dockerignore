@@ -1,0 +1,8 @@
+**
+
+!src/**
+!build.gradle
+!gradle.properties
+!settings.gradle
+!entrypoint.sh
+!build/libs/db-migrate*.jar

@@ -18,4 +18,4 @@ services:
   - name: task
   - name: user
   - name: gsheets_spreadsheet
-  - name: indexed_comment
+  - name: comment_index

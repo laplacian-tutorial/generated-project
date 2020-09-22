@@ -1,0 +1,53 @@
+plugins {
+  id 'org.jetbrains.kotlin.jvm' version "$kotlinVersion"
+  id 'org.jetbrains.kotlin.plugin.spring' version "$kotlinVersion"
+  id 'org.springframework.boot' version "$springBootVersion"
+  id 'io.spring.dependency-management' version "$springDependencyVersion"
+}
+
+group = "java-stack-service"
+version = "0.0.1"
+
+defaultTasks 'bootJar'
+
+dependencies {
+  implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+  implementation 'org.jetbrains.kotlin:kotlin-reflect'
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutineVersion"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinxCoroutineVersion"
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+  implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+  implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+  implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+  implementation "com.graphql-java:graphql-java-spring-boot-starter-webflux:$graphqlJavaWebfluxVersion"
+
+  runtimeOnly "io.r2dbc:r2dbc-postgresql:$r2dbcPostgresVersion"
+
+  testImplementation 'org.jetbrains.kotlin:kotlin-test'
+  testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+}
+
+repositories {
+  jcenter()
+}
+
+bootRun {
+  jvmArgs = [
+    "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5060",
+  ]
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+  kotlinOptions {
+    freeCompilerArgs = [ '-Xjsr305=strict' ]
+    jvmTarget = kotlinJvmTarget
+  }
+}
+
+sourceSets {
+  main.java.srcDirs += ["src/gen/java", "src/gen/kotlin"]
+  main.resources.srcDirs += ["src/gen/resources"]
+  test.java.srcDirs += ["src/gen/java", "src/gen/kotlin"]
+  test.resources.srcDirs += ["src/gen/resources"]
+}

@@ -36,7 +36,14 @@ graphql_types:
   rest_resource_name: gsheets_spreadsheet
   operation_name: get_spreadsheet_by_id
 
-- name: indexed_comment
+- name: comment_index
   resolver_type: indexed_document
   index_name: comments
-  entity_name: comment
+  document_model_name: comment
+  relationships:
+  - name: detail
+    referencing_type_name: comment
+    mappings:
+    - from: entity_id
+      to: id
+

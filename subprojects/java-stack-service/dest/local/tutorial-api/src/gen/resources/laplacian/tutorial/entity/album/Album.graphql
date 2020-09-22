@@ -1,0 +1,40 @@
+#
+# album
+#
+type Album {
+  #
+  # The id of this album.
+  #
+  id: Int!
+  #
+  # The user_id of this album.
+  #
+  userId: Int!
+  #
+  # The title of this album.
+  #
+  title: String!
+
+  #
+  # owner
+  #
+  owner(
+    id: IntSearchInput
+    name: StringSearchInput
+    username: StringSearchInput
+    email: StringSearchInput
+    phone: StringSearchInput
+    website: StringSearchInput
+  ): User!
+  #
+  # photos
+  #
+  photos(
+    id: IntSearchInput
+    albumId: IntSearchInput
+    title: StringSearchInput
+    url: StringSearchInput
+    thumbnailUrl: StringSearchInput
+    dateTaken: StringSearchInput
+  ): [Photo!]!
+}

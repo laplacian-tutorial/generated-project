@@ -1,0 +1,115 @@
+#
+# The root query schema definition.
+#
+type Query {
+  albums(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+  ): [Album]!
+  numberOfAlbums(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+  ): Int!
+  album(
+    id: Int!
+  ): Album
+  comments(
+    postId: IntSearchInput
+    seqNumber: IntSearchInput
+    name: StringSearchInput
+    email: StringSearchInput
+    body: StringSearchInput
+  ): [Comment]!
+  numberOfComments(
+    postId: IntSearchInput
+    seqNumber: IntSearchInput
+    name: StringSearchInput
+    email: StringSearchInput
+    body: StringSearchInput
+  ): Int!
+  comment(
+    postId: Int!
+    seqNumber: Int!
+  ): Comment
+  indexedComments(
+    postId: IntSearchInput
+    seqNumber: IntSearchInput
+    name: String
+    email: String
+    body: String
+  ): [IndexedComment]!
+
+  photos(
+    id: IntSearchInput
+    albumId: IntSearchInput
+    title: StringSearchInput
+    url: StringSearchInput
+    thumbnailUrl: StringSearchInput
+    dateTaken: StringSearchInput
+  ): [Photo]!
+  numberOfPhotos(
+    id: IntSearchInput
+    albumId: IntSearchInput
+    title: StringSearchInput
+    url: StringSearchInput
+    thumbnailUrl: StringSearchInput
+    dateTaken: StringSearchInput
+  ): Int!
+  photo(
+    id: Int!
+  ): Photo
+  posts(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+    body: StringSearchInput
+  ): [Post]!
+  numberOfPosts(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+    body: StringSearchInput
+  ): Int!
+  post(
+    id: Int!
+  ): Post
+  tasks(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+    completed: Boolean
+  ): [Task]!
+  numberOfTasks(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+    completed: Boolean
+  ): Int!
+  task(
+    id: Int!
+  ): Task
+  users(
+    id: IntSearchInput
+    name: StringSearchInput
+    username: StringSearchInput
+    email: StringSearchInput
+    phone: StringSearchInput
+    website: StringSearchInput
+  ): [User]!
+  numberOfUsers(
+    id: IntSearchInput
+    name: StringSearchInput
+    username: StringSearchInput
+    email: StringSearchInput
+    phone: StringSearchInput
+    website: StringSearchInput
+  ): Int!
+  user(
+    id: Int!
+  ): User
+  gsheetsSpreadsheet(
+    spreadsheetId: String!
+  ): GsheetsSpreadsheet
+}

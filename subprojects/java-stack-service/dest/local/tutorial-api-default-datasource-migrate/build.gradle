@@ -1,0 +1,28 @@
+plugins {
+    id 'maven-publish'
+    id 'java'
+}
+
+group = "laplacian-tutorial"
+version = "0.0.1"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.postgresql:postgresql:42.2.12'
+    compile 'org.flywaydb:flyway-core:6.3.3'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'db.migration.JdbcMigration'
+    }
+    baseName = "db-migrate"
+    from {
+        configurations.compile.collect {
+            it.directory ? it : zipTree(it)
+        }
+    }
+}

@@ -1,0 +1,30 @@
+#
+# address
+#
+type Address {
+  #
+  # The street of this address.
+  #
+  street: String!
+  #
+  # The suite of this address.
+  #
+  suite: String!
+  #
+  # The city of this address.
+  #
+  city: String!
+  #
+  # The zipcode of this address.
+  #
+  zipcode: String!
+  #
+  # The latitude of this address.
+  #
+  latitude: String!
+  #
+  # The longitude of this address.
+  #
+  longitude: String!
+
+}

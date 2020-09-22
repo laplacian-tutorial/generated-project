@@ -1,0 +1,33 @@
+#
+# task
+#
+type Task {
+  #
+  # The id of this task.
+  #
+  id: Int!
+  #
+  # The user_id of this task.
+  #
+  userId: Int
+  #
+  # The title of this task.
+  #
+  title: String!
+  #
+  # Defines this task is completed or not.
+  #
+  completed: Boolean!
+
+  #
+  # assignee
+  #
+  assignee(
+    id: IntSearchInput
+    name: StringSearchInput
+    username: StringSearchInput
+    email: StringSearchInput
+    phone: StringSearchInput
+    website: StringSearchInput
+  ): User
+}

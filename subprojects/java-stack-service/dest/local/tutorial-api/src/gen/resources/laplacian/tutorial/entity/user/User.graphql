@@ -1,0 +1,75 @@
+#
+# user
+#
+type User {
+  #
+  # The id of this user.
+  #
+  id: Int!
+  #
+  # The name of this user.
+  #
+  name: String!
+  #
+  # The username of this user.
+  #
+  username: String!
+  #
+  # The email of this user.
+  #
+  email: String!
+  #
+  # The phone of this user.
+  #
+  phone: String
+  #
+  # The website of this user.
+  #
+  website: String
+
+  #
+  # address
+  #
+  address(
+    street: StringSearchInput
+    suite: StringSearchInput
+    city: StringSearchInput
+    zipcode: StringSearchInput
+    latitude: StringSearchInput
+    longitude: StringSearchInput
+  ): Address!
+  #
+  # company
+  #
+  company(
+    name: StringSearchInput
+    catchPhrase: StringSearchInput
+    bs: StringSearchInput
+  ): Company
+  #
+  # tasks
+  #
+  tasks(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+    completed: Boolean
+  ): [Task!]!
+  #
+  # albums
+  #
+  albums(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+  ): [Album!]!
+  #
+  # posts
+  #
+  posts(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+    body: StringSearchInput
+  ): [Post!]!
+}

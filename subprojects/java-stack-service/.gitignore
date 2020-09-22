@@ -33,7 +33,10 @@ out/
 # Laplacian projects
 .NEXT/
 .PREV/
-/dest/
+/dest/development/
+/dest/local/terraform/
+/dest/tutorial-api-*/
+/dest/tutorial-test-*/
 
 
 # GCP

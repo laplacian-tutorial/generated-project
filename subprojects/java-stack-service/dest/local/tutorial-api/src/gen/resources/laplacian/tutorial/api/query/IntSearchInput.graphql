@@ -1,0 +1,9 @@
+input IntSearchInput {
+  equalsTo: [Int]
+  inRange: IntRange
+}
+
+input IntRange {
+  from: Int
+  to: Int
+}

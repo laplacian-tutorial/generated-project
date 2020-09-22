@@ -1,0 +1,43 @@
+#
+# post
+#
+type Post {
+  #
+  # The id of this post.
+  #
+  id: Int!
+  #
+  # The user_id of this post.
+  #
+  userId: Int!
+  #
+  # The title of this post.
+  #
+  title: String!
+  #
+  # The body of this post.
+  #
+  body: String!
+
+  #
+  # posted_by
+  #
+  postedBy(
+    id: IntSearchInput
+    name: StringSearchInput
+    username: StringSearchInput
+    email: StringSearchInput
+    phone: StringSearchInput
+    website: StringSearchInput
+  ): User
+  #
+  # comments
+  #
+  comments(
+    postId: IntSearchInput
+    seqNumber: IntSearchInput
+    name: StringSearchInput
+    email: StringSearchInput
+    body: StringSearchInput
+  ): [Comment!]!
+}

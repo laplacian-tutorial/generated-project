@@ -1,0 +1,38 @@
+#
+# photo
+#
+type Photo {
+  #
+  # The id of this photo.
+  #
+  id: Int!
+  #
+  # The album_id of this photo.
+  #
+  albumId: Int!
+  #
+  # The title of this photo.
+  #
+  title: String!
+  #
+  # The url of this photo.
+  #
+  url: String!
+  #
+  # The thumbnailUrl of this photo.
+  #
+  thumbnailUrl: String!
+  #
+  # The date_taken of this photo.
+  #
+  dateTaken: String!
+
+  #
+  # album
+  #
+  album(
+    id: IntSearchInput
+    userId: IntSearchInput
+    title: StringSearchInput
+  ): Album!
+}

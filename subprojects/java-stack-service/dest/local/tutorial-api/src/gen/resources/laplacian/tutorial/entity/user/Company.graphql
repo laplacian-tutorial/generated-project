@@ -1,0 +1,18 @@
+#
+# company
+#
+type Company {
+  #
+  # The name of this company.
+  #
+  name: String!
+  #
+  # The catch_phrase of this company.
+  #
+  catchPhrase: String
+  #
+  # The bs of this company.
+  #
+  bs: String
+
+}
