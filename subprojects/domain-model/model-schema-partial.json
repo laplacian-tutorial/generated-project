@@ -200,6 +200,14 @@
       }
     }
     ,
+    "indexed_comments": {
+      "description": "indexed_comment",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/indexed_comment"
+      }
+    }
+    ,
     "photos": {
       "description": "photo",
       "type": "array",
@@ -2138,6 +2146,37 @@
           },
           "body": {
             "description": "The body of this comment.",
+            "type": "string"
+          }
+        }
+      },
+      "indexed_comment": {
+        "description": "indexed_comment",
+        "type": "object",
+        "required": [
+          "post_id",
+          "seq_number"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "post_id": {
+            "description": "The post_id of this indexed_comment.",
+            "type": "number"
+          },
+          "seq_number": {
+            "description": "The seq_number of this indexed_comment.",
+            "type": "number"
+          },
+          "name": {
+            "description": "The name of this indexed_comment.",
+            "type": "string"
+          },
+          "email": {
+            "description": "The email of this indexed_comment.",
+            "type": "string"
+          },
+          "body": {
+            "description": "The body of this indexed_comment.",
             "type": "string"
           }
         }

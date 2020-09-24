@@ -169,10 +169,12 @@ $ ./script/generate
 
 - [model/project.yaml](<./model/project.yaml>)
 - [src/model/components/tutorial_api.yaml](<./src/model/components/tutorial_api.yaml>)
+- [src/model/components/tutorial_search_engine.yaml](<./src/model/components/tutorial_search_engine.yaml>)
 - [src/model/components/tutorial_test_db.yaml](<./src/model/components/tutorial_test_db.yaml>)
 - [src/model/entities/gsheets_spreadsheet.yaml](<./src/model/entities/gsheets_spreadsheet.yaml>)
 - [src/model/environments/development.yaml](<./src/model/environments/development.yaml>)
 - [src/model/environments/local.yaml](<./src/model/environments/local.yaml>)
+- [src/model/external_rest_api_endpoint/google_sheets_api.yaml](<./src/model/external_rest_api_endpoint/google_sheets_api.yaml>)
 - [src/model/graphql-types/graphql-types.yaml](<./src/model/graphql-types/graphql-types.yaml>)
 - [src/model/rest_resources/gsheets_spreadsheet.yaml](<./src/model/rest_resources/gsheets_spreadsheet.yaml>)
 - [src/model/services/tutorial-api.yaml](<./src/model/services/tutorial-api.yaml>)

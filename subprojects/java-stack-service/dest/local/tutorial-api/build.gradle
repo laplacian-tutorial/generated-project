@@ -21,9 +21,7 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
   implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
   implementation "com.graphql-java:graphql-java-spring-boot-starter-webflux:$graphqlJavaWebfluxVersion"
-
   runtimeOnly "io.r2dbc:r2dbc-postgresql:$r2dbcPostgresVersion"
-
   testImplementation 'org.jetbrains.kotlin:kotlin-test'
   testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
 }

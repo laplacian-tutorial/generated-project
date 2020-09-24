@@ -1,0 +1,4 @@
+components:
+- name: tutorial_search_engine
+  type: elasticsearch_server
+  container_image: elasticsearch:7.9.1

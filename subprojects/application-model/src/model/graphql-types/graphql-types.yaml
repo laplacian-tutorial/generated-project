@@ -33,17 +33,19 @@ graphql_types:
 
 - name: gsheets_spreadsheet
   resolver_type: external_rest_api
+  rest_client_name: google_sheets_api
   rest_resource_name: gsheets_spreadsheet
   operation_name: get_spreadsheet_by_id
 
-- name: comment_index
+- name: indexed_comment
   resolver_type: indexed_document
   index_name: comments
-  document_model_name: comment
+  document_model_name: indexed_comment
   relationships:
   - name: detail
     referencing_type_name: comment
     mappings:
-    - from: entity_id
-      to: id
-
+    - from: post_id
+      to: post_id
+    - from: seq_number
+      to: seq_number

@@ -1,25 +1,25 @@
 #
-# comment
+# indexed_comment
 #
 type IndexedComment {
   #
-  # The post_id of this comment.
+  # The post_id of this indexed_comment.
   #
   postId: Int!
   #
-  # The seq_number of this comment.
+  # The seq_number of this indexed_comment.
   #
   seqNumber: Int!
   #
-  # The name of this comment.
+  # The name of this indexed_comment.
   #
   name: String!
   #
-  # The email of this comment.
+  # The email of this indexed_comment.
   #
   email: String!
   #
-  # The body of this comment.
+  # The body of this indexed_comment.
   #
   body: String!
 

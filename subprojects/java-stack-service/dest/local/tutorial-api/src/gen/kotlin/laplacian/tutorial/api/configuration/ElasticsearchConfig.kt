@@ -14,13 +14,13 @@ import org.springframework.data.elasticsearch.core.mapping.SimpleElasticsearchMa
 import org.springframework.web.reactive.function.client.ExchangeStrategies
 
 @Configuration
-class ElasticSearchConfig(
+class ElasticsearchConfig(
     @Value("\${search_engine_client.default.endpoints}")
     private val endpoints: String,
 ) {
 
     @Bean
-    fun elasticSearchClient(): ReactiveElasticsearchClient = ReactiveRestClients.create(
+    fun elasticsearchClient(): ReactiveElasticsearchClient = ReactiveRestClients.create(
         ClientConfiguration
         .builder()
         .connectedTo(endpoints)

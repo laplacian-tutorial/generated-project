@@ -21,9 +21,9 @@ services:
     - 'DATASOURCE_URL=r2dbc:pool:postgresql://tutorial-test-db:5432/tutorial_db'
     - 'DATASOURCE_USER=test'
     - 'DATASOURCE_PASS=secret'
-    - 'HTTP_CLIENT_GOOGLE_SHEETS_API_BASE_URL=https://sheets.googleapis.com/v4'
-    - 'HTTP_CLIENT_GOOGLE_SHEETS_API_API_KEY='
-
+    - 'REST_CLIENT_GOOGLE_SHEETS_API_BASE_URL=https://sheets.googleapis.com/v4'
+    - 'REST_CLIENT_GOOGLE_SHEETS_API_API_KEY=<SET YOUR API KEY>'
+    - 'SEARCH_ENGINE_CLIENT_DEFAULT_ENDPOINTS=tutorial-search-engine:9200'
     networks:
     - backend
 
@@ -39,13 +39,13 @@ services:
     networks:
     - backend
 # @services|laplacian-arch.java-stack-service.project-template-1.0.0!dest/{each environments as environment}/{hyphen environment.name}/{each environment.deployments as deployment}/{with deployment.component as component}/{if (eq component.type 'springboot2_api_service')}/{if (eq deployment.type 'container_on_local_machine')}/docker-compose_services_.yaml.hbs@
-# @+services|laplacian-arch.java-stack-service.project-template-1.0.0!dest/{each environments as environment}/{hyphen environment.name}/{each environment.deployments as deployment}/{with deployment.component as component}/{if (eq component.type 'postgres_test_db')}/{if (eq deployment.type 'container_on_local_machine')}/docker-compose_services_.yaml.hbs@
+# @+services|laplacian-arch.java-stack-service.project-template-1.0.0!dest/{each environments as environment}/{hyphen environment.name}/{each environment.deployments as deployment}/{with deployment.component as component}/{if (eq component.type 'elasticsearch_server')}/{if (eq deployment.type 'container_on_local_machine')}/docker-compose_services_.yaml.hbs@
 #
-  # tutorial_test_db
+  # tutorial_search_engine
   #
-  tutorial-test-search-engine:
+  tutorial-search-engine:
     image: elasticsearch:7.9.1
-    container_name: tutorial-test-search-engine
+    container_name: tutorial-search-engine
     ports:
     - '9200:9200'
     expose:
@@ -54,7 +54,11 @@ services:
     - "discovery.type=single-node"
     networks:
     - backend
-
+# @services|laplacian-arch.java-stack-service.project-template-1.0.0!dest/{each environments as environment}/{hyphen environment.name}/{each environment.deployments as deployment}/{with deployment.component as component}/{if (eq component.type 'elasticsearch_server')}/{if (eq deployment.type 'container_on_local_machine')}/docker-compose_services_.yaml.hbs@
+# @+services|laplacian-arch.java-stack-service.project-template-1.0.0!dest/{each environments as environment}/{hyphen environment.name}/{each environment.deployments as deployment}/{with deployment.component as component}/{if (eq component.type 'postgres_test_db')}/{if (eq deployment.type 'container_on_local_machine')}/docker-compose_services_.yaml.hbs@
+#
+  # tutorial_test_db
+  #
   tutorial-test-db:
     image: postgres
     container_name: tutorial-test-db

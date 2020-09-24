@@ -80,6 +80,8 @@ address
 album
 - [**Comment**](<./doc/entities/Comment.md>)
 comment
+- [**IndexedComment**](<./doc/entities/IndexedComment.md>)
+indexed_comment
 - [**Company**](<./doc/entities/Company.md>)
 company
 - [**Photo**](<./doc/entities/Photo.md>)

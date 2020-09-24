@@ -1,22 +1,10 @@
 package laplacian.tutorial.api.query
-import laplacian.tutorial.entity.album.AlbumEntity
-import laplacian.tutorial.entity.album.AlbumRepository
-import laplacian.tutorial.entity.album.AlbumSearchInput
-import laplacian.tutorial.entity.comment.CommentEntity
-import laplacian.tutorial.entity.comment.CommentRepository
-import laplacian.tutorial.entity.comment.CommentSearchInput
-import laplacian.tutorial.entity.photo.PhotoEntity
-import laplacian.tutorial.entity.photo.PhotoRepository
-import laplacian.tutorial.entity.photo.PhotoSearchInput
-import laplacian.tutorial.entity.post.PostEntity
-import laplacian.tutorial.entity.post.PostRepository
-import laplacian.tutorial.entity.post.PostSearchInput
-import laplacian.tutorial.entity.task.TaskEntity
-import laplacian.tutorial.entity.task.TaskRepository
-import laplacian.tutorial.entity.task.TaskSearchInput
-import laplacian.tutorial.entity.user.UserEntity
-import laplacian.tutorial.entity.user.UserRepository
-import laplacian.tutorial.entity.user.UserSearchInput
+import laplacian.tutorial.entity.album.*
+import laplacian.tutorial.entity.comment.*
+import laplacian.tutorial.entity.photo.*
+import laplacian.tutorial.entity.post.*
+import laplacian.tutorial.entity.task.*
+import laplacian.tutorial.entity.user.*
 import laplacian.tutorial.entity.indexed_comment.*
 
 import laplacian.tutorial.api.rpc.rest.gsheets_spreadsheet.*
@@ -36,8 +24,8 @@ class QueryResolver(
     val postRepository: PostRepository,
     val taskRepository: TaskRepository,
     val userRepository: UserRepository,
-    val indexedCommentSearcher: IndexedCommentSearcher,
     val gsheetsSpreadsheetRestResource: GsheetsSpreadsheetRestResource,
+    val indexedCommentSearcher: IndexedCommentSearcher,
 ) {
     fun album(context: DataFetchingEnvironment): CompletableFuture<AlbumEntity> =
         context
@@ -54,7 +42,6 @@ class QueryResolver(
     fun numberOfAlbums(context: DataFetchingEnvironment): CompletableFuture<Long> =
         albumRepository
         .countAlbums(AlbumSearchInput.from(context.arguments))
-
     fun comment(context: DataFetchingEnvironment): CompletableFuture<CommentEntity> =
         context
         .getDataLoader<CommentEntity, CommentEntity>(COMMENT_BY_PK)
@@ -71,13 +58,6 @@ class QueryResolver(
     fun numberOfComments(context: DataFetchingEnvironment): CompletableFuture<Long> =
         commentRepository
         .countComments(CommentSearchInput.from(context.arguments))
-
-    fun indexedComments(context: DataFetchingEnvironment): CompletableFuture<List<IndexedCommentDocument>> =
-        indexedCommentSearcher
-        .findComments(IndexedCommentSearchInput.from(context.arguments))
-        .thenApply{ it.toList() }
-
-
     fun photo(context: DataFetchingEnvironment): CompletableFuture<PhotoEntity> =
         context
         .getDataLoader<PhotoEntity, PhotoEntity>(PHOTO_BY_PK)
@@ -145,6 +125,11 @@ class QueryResolver(
             spreadsheetId = context.getArgument("spreadsheetId"),
         ))
 
+    fun indexedComments(context: DataFetchingEnvironment): CompletableFuture<List<IndexedCommentDocument>> =
+        indexedCommentSearcher
+        .findIndexedComments(IndexedCommentSearchInput.from(context.arguments))
+        .thenApply{ it.toList() }
+
     fun registerFetcher(wiring: RuntimeWiring.Builder) = wiring.type(
         TypeRuntimeWiring.newTypeWiring("Query")
         .dataFetcher("albums") { env -> albums(env) }
@@ -153,7 +138,6 @@ class QueryResolver(
         .dataFetcher("comments") { env -> comments(env) }
         .dataFetcher("numberOfComments") { env -> numberOfComments(env) }
         .dataFetcher("comment") { env -> comment(env)}
-        .dataFetcher("indexedComments") { env -> indexedComments(env)}
         .dataFetcher("photos") { env -> photos(env) }
         .dataFetcher("numberOfPhotos") { env -> numberOfPhotos(env) }
         .dataFetcher("photo") { env -> photo(env)}
@@ -167,6 +151,7 @@ class QueryResolver(
         .dataFetcher("numberOfUsers") { env -> numberOfUsers(env) }
         .dataFetcher("user") { env -> user(env)}
         .dataFetcher("gsheetsSpreadsheet") { env -> getSpreadsheetById(env)}
+        .dataFetcher("indexedComments") { env -> indexedComments(env)}
     )
 
     companion object {

@@ -7,3 +7,6 @@ environments:
     type: container_on_local_machine
   - name: tutorial_test_db
     type: container_on_local_machine
+  - name: tutorial_search_engine
+    type: container_on_local_machine
+

@@ -184,6 +184,14 @@
       }
     }
     ,
+    "indexed_comments": {
+      "description": "indexed_comment",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/indexed_comment"
+      }
+    }
+    ,
     "photos": {
       "description": "photo",
       "type": "array",
@@ -213,6 +221,46 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/user"
+      }
+    }
+    ,
+    "gsheets_spreadsheets": {
+      "description": "Resource that represents a spreadsheet.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_spreadsheet"
+      }
+    }
+    ,
+    "gsheets_sheets": {
+      "description": "A sheet in a spreadsheet.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_sheet"
+      }
+    }
+    ,
+    "gsheets_grid_datas": {
+      "description": "gsheets_grid_data",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_grid_data"
+      }
+    }
+    ,
+    "gsheets_row_datas": {
+      "description": "gsheets_row_data",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_row_data"
+      }
+    }
+    ,
+    "gsheets_cell_datas": {
+      "description": "gsheets_cell_data",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/gsheets_cell_data"
       }
     }
   },
@@ -1720,6 +1768,37 @@
           }
         }
       },
+      "indexed_comment": {
+        "description": "indexed_comment",
+        "type": "object",
+        "required": [
+          "post_id",
+          "seq_number"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "post_id": {
+            "description": "The post_id of this indexed_comment.",
+            "type": "number"
+          },
+          "seq_number": {
+            "description": "The seq_number of this indexed_comment.",
+            "type": "number"
+          },
+          "name": {
+            "description": "The name of this indexed_comment.",
+            "type": "string"
+          },
+          "email": {
+            "description": "The email of this indexed_comment.",
+            "type": "string"
+          },
+          "body": {
+            "description": "The body of this indexed_comment.",
+            "type": "string"
+          }
+        }
+      },
       "company": {
         "description": "company",
         "type": "object",
@@ -1870,6 +1949,113 @@
           "company": {
             "description": "company",
             "$ref": "#/definitions/entities/company"
+          }
+        }
+      },
+      "gsheets_spreadsheet": {
+        "description": "Resource that represents a spreadsheet.",
+        "type": "object",
+        "required": [
+          "spreadsheet_id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "spreadsheet_id": {
+            "description": "The spreadsheet_id of this gsheets_spreadsheet.",
+            "type": "string"
+          },
+          "sheets": {
+            "description": "sheets",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/gsheets_sheet"
+            }
+          }
+        }
+      },
+      "gsheets_sheet": {
+        "description": "A sheet in a spreadsheet.",
+        "type": "object",
+        "required": [
+          "sheet_id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "sheet_id": {
+            "description": "The sheet_id of this gsheets_sheet.",
+            "type": "string"
+          },
+          "title": {
+            "description": "The title of this gsheets_sheet.",
+            "type": "string"
+          },
+          "index": {
+            "description": "The index of this gsheets_sheet.",
+            "type": "number"
+          },
+          "hidden": {
+            "description": "Defines this gsheets_sheet is hidden or not.",
+            "type": "boolean"
+          },
+          "data": {
+            "description": "data",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/gsheets_grid_data"
+            }
+          }
+        }
+      },
+      "gsheets_grid_data": {
+        "description": "gsheets_grid_data",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "start_row": {
+            "description": "The start_row of this gsheets_grid_data.",
+            "type": "number"
+          },
+          "start_column": {
+            "description": "The start_column of this gsheets_grid_data.",
+            "type": "number"
+          },
+          "row_data": {
+            "description": "row_data",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/gsheets_row_data"
+            }
+          }
+        }
+      },
+      "gsheets_row_data": {
+        "description": "gsheets_row_data",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "values": {
+            "description": "values",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/gsheets_cell_data"
+            }
+          }
+        }
+      },
+      "gsheets_cell_data": {
+        "description": "gsheets_cell_data",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "formatted_value": {
+            "description": "The formatted_value of this gsheets_cell_data.",
+            "type": "string"
           }
         }
       }

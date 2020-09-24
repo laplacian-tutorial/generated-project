@@ -21,9 +21,9 @@ import laplacian.tutorial.entity.task.TaskResolver
 import laplacian.tutorial.entity.user.UserResolver
 import laplacian.tutorial.entity.user.AddressResolver
 import laplacian.tutorial.entity.user.CompanyResolver
+
+
 import laplacian.tutorial.entity.indexed_comment.IndexedCommentResolver
-
-
 
 import java.nio.charset.StandardCharsets
 import graphql.schema.idl.RuntimeWiring
@@ -54,6 +54,7 @@ class GraphqlConfig {
 
     @Bean
     fun buildRuntimeWiring(
+        queryResolver: QueryResolver,
         addressResolver: AddressResolver,
         albumResolver: AlbumResolver,
         commentResolver: CommentResolver,
@@ -62,9 +63,9 @@ class GraphqlConfig {
         postResolver: PostResolver,
         taskResolver: TaskResolver,
         userResolver: UserResolver,
-        queryResolver: QueryResolver,
         indexedCommentResolver: IndexedCommentResolver,
     ): RuntimeWiring = RuntimeWiring.newRuntimeWiring().also {
+        queryResolver.registerFetcher(it)
         addressResolver.registerFetcher(it)
         albumResolver.registerFetcher(it)
         commentResolver.registerFetcher(it)
@@ -73,7 +74,6 @@ class GraphqlConfig {
         postResolver.registerFetcher(it)
         taskResolver.registerFetcher(it)
         userResolver.registerFetcher(it)
-        queryResolver.registerFetcher(it)
         indexedCommentResolver.registerFetcher(it)
     }.build()
 
@@ -86,7 +86,7 @@ class GraphqlConfig {
         photoResolver: PhotoResolver,
         postResolver: PostResolver,
         taskResolver: TaskResolver,
-        userResolver: UserResolver
+        userResolver: UserResolver,
     ): DataLoaderRegistry = DataLoaderRegistry().also {
         addressResolver.registerLoader(it)
         albumResolver.registerLoader(it)

@@ -26,6 +26,7 @@ type Album {
     phone: StringSearchInput
     website: StringSearchInput
   ): User!
+
   #
   # photos
   #
@@ -37,4 +38,5 @@ type Album {
     thumbnailUrl: StringSearchInput
     dateTaken: StringSearchInput
   ): [Photo!]!
+
 }

@@ -7,20 +7,20 @@ import graphql.schema.idl.RuntimeWiring
 import graphql.schema.idl.TypeRuntimeWiring
 import graphql.schema.DataFetchingEnvironment
 import java.util.concurrent.CompletableFuture
-
 import laplacian.tutorial.entity.comment.*
 
+
 /**
- * An reactive implementation of the comment entity query resolver.
+ * A reactive implementation of the indexed_comment entity query resolver.
  */
 @Component
 class IndexedCommentResolver(
-    private val commentRepository: CommentRepository
+    private val commentRepository: CommentRepository,
 ) {
-    /**
-     * Loads the post of this comment.
-     */
-    fun comment(self: IndexedCommentDocument, context: DataFetchingEnvironment): CompletableFuture<CommentEntity> =
+    fun detail(
+        self: IndexedCommentDocument,
+        context: DataFetchingEnvironment
+    ): CompletableFuture<CommentEntity> =
         context
         .getDataLoader<CommentEntity, CommentEntity>(BY_PK)
         .load(CommentEntity().apply {
@@ -32,7 +32,7 @@ class IndexedCommentResolver(
         TypeRuntimeWiring.newTypeWiring("IndexedComment")
         .dataFetcher("detail") { env ->
             val key = env.getSource() as IndexedCommentDocument
-            comment(key, env)
+            detail(key, env)
         }
     )
 

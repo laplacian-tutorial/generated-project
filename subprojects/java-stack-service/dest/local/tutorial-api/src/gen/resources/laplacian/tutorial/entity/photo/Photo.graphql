@@ -35,4 +35,5 @@ type Photo {
     userId: IntSearchInput
     title: StringSearchInput
   ): Album!
+
 }

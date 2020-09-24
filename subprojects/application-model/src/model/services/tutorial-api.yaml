@@ -6,7 +6,7 @@ services:
   - type: postgres
   search_engine_clients:
   - type: elasticsearch
-  http_clients:
+  rest_clients:
   - name: google_sheets_api
   graphql_type_entries:
   - name: address
@@ -18,4 +18,4 @@ services:
   - name: task
   - name: user
   - name: gsheets_spreadsheet
-  - name: comment_index
+  - name: indexed_comment

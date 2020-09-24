@@ -30,6 +30,7 @@ type Post {
     phone: StringSearchInput
     website: StringSearchInput
   ): User
+
   #
   # comments
   #
@@ -40,4 +41,5 @@ type Post {
     email: StringSearchInput
     body: StringSearchInput
   ): [Comment!]!
+
 }

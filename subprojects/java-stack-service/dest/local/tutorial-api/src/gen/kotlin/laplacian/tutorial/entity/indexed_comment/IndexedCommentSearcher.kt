@@ -8,7 +8,7 @@ import java.util.*
 
 interface IndexedCommentSearcher {
     /**
-     * Finds comments which matches the given conditions.
+     * Finds indexed_comments which matches the given conditions.
      */
-    fun findComments(input: IndexedCommentSearchInput = IndexedCommentSearchInput()): CompletableFuture<List<IndexedCommentDocument>>
+    fun findIndexedComments(input: IndexedCommentSearchInput = IndexedCommentSearchInput()): CompletableFuture<List<IndexedCommentDocument>>
 }

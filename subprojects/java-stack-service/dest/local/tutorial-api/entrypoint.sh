@@ -10,5 +10,6 @@ java \
   ${DATASOURCE_URL:+ --spring.r2dbc.url=}${DATASOURCE_URL} \
   ${DATASOURCE_USER:+ --spring.r2dbc.username=}${DATASOURCE_USER} \
   ${DATASOURCE_PASS:+ --spring.r2dbc.password=}${DATASOURCE_PASS} \
-  ${HTTP_CLIENT_GOOGLE_SHEETS_API_BASE_URL:+ --http_client.google_sheets_api.base_url=}${HTTP_CLIENT_GOOGLE_SHEETS_API_BASE_URL} \
-  ${HTTP_CLIENT_GOOGLE_SHEETS_API_API_KEY:+ --http_client.google_sheets_api.api_key=}${HTTP_CLIENT_GOOGLE_SHEETS_API_API_KEY} \
+  ${REST_CLIENT_GOOGLE_SHEETS_API_BASE_URL:+ --rest_client.google_sheets_api.base_url=}${REST_CLIENT_GOOGLE_SHEETS_API_BASE_URL} \
+  ${REST_CLIENT_GOOGLE_SHEETS_API_API_KEY:+ --rest_client.google_sheets_api.api_key=}${REST_CLIENT_GOOGLE_SHEETS_API_API_KEY} \
+  ${SEARCH_ENGINE_CLIENT_DEFAULT_BASE_URL:+ --search_engine_client.default.endpoints=}${SEARCH_ENGINE_CLIENT_DEFAULT_ENDPOINTS} \

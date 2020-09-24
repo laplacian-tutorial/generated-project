@@ -15,20 +15,13 @@ class IndexedCommentSearcherImpl(
 ): IndexedCommentSearcher {
 
     companion object {
-        const val INDEX_NAME = "indexed_comment"
+        const val INDEX_NAME = "comments"
     }
 
-    override fun findComments(input: IndexedCommentSearchInput): CompletableFuture<List<IndexedCommentDocument>> {
+    override fun findIndexedComments(
+        input: IndexedCommentSearchInput
+    ): CompletableFuture<List<IndexedCommentDocument>> {
         val query = NativeSearchQueryBuilder()
-        if (!input.body.isEmpty()) {
-            query.withQuery(QueryBuilders.matchQuery("body", input.body))
-        }
-        if (!input.email.isEmpty()) {
-            query.withQuery(QueryBuilders.matchQuery("email", input.email))
-        }
-        if (!input.name.isEmpty()) {
-            query.withQuery(QueryBuilders.matchQuery("name", input.name))
-        }
         if (!input.postId.equalsTo.isEmpty()) {
             query.withQuery(QueryBuilders.termsQuery("postId", input.postId.equalsTo))
         }
@@ -47,7 +40,16 @@ class IndexedCommentSearcherImpl(
         if (input.seqNumber.inRangeTo != null) {
             query.withQuery(QueryBuilders.rangeQuery("seqNumber").to(input.seqNumber.inRangeTo))
         }
-        return searcher.search(
+        if (!input.name.isEmpty()) {
+            query.withQuery(QueryBuilders.matchQuery("name", input.name))
+        }
+        if (!input.email.isEmpty()) {
+            query.withQuery(QueryBuilders.matchQuery("email", input.email))
+        }
+        if (!input.body.isEmpty()) {
+            query.withQuery(QueryBuilders.matchQuery("body", input.body))
+        }
+       return searcher.search(
             query.build(),
             IndexedCommentDocument::class.java,
             IndexCoordinates.of(INDEX_NAME),

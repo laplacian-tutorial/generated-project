@@ -5,7 +5,9 @@ components:
   datasource_mappings:
   - name: default
     component_name: tutorial_test_db
-  http_client_settings:
+  external_rest_api_mappings:
   - name: google_sheets_api
-    api_key: __SET_YOUR_API_KEY__
-    base_url: https://sheets.googleapis.com/v4
+    external_rest_api_endpoint_name: google_sheets_api
+  search_engine_mappings:
+  - name: default
+    component_name: tutorial_search_engine

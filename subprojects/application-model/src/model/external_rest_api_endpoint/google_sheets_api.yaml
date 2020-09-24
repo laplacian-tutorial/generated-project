@@ -1,0 +1,4 @@
+external_rest_api_endpoints:
+- name: google_sheets_api
+  base_url: https://sheets.googleapis.com/v4
+  api_key: "<SET YOUR API KEY>"

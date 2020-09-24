@@ -38,6 +38,7 @@ type User {
     latitude: StringSearchInput
     longitude: StringSearchInput
   ): Address!
+
   #
   # company
   #
@@ -46,6 +47,7 @@ type User {
     catchPhrase: StringSearchInput
     bs: StringSearchInput
   ): Company
+
   #
   # tasks
   #
@@ -55,6 +57,7 @@ type User {
     title: StringSearchInput
     completed: Boolean
   ): [Task!]!
+
   #
   # albums
   #
@@ -63,6 +66,7 @@ type User {
     userId: IntSearchInput
     title: StringSearchInput
   ): [Album!]!
+
   #
   # posts
   #
@@ -72,4 +76,5 @@ type User {
     title: StringSearchInput
     body: StringSearchInput
   ): [Post!]!
+
 }

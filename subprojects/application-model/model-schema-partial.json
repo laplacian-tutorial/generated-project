@@ -176,19 +176,19 @@
       }
     }
     ,
-    "http_client_settings": {
-      "description": "http_client_setting",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/entities/http_client_setting"
-      }
-    }
-    ,
     "environments": {
       "description": "environment",
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/environment"
+      }
+    }
+    ,
+    "external_rest_api_endpoints": {
+      "description": "external_rest_api_endpoint",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/external_rest_api_endpoint"
       }
     }
     ,
@@ -224,11 +224,11 @@
       }
     }
     ,
-    "http_clients": {
-      "description": "http_client",
+    "rest_clients": {
+      "description": "rest_client",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/entities/http_client"
+        "$ref": "#/definitions/entities/rest_client"
       }
     }
     ,
@@ -269,6 +269,14 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/entities/comment"
+      }
+    }
+    ,
+    "indexed_comments": {
+      "description": "indexed_comment",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/entities/indexed_comment"
       }
     }
     ,
@@ -1812,6 +1820,7 @@
             "description": "The type of this component.",
             "enum":[
               "postgres_test_db",
+              "elasticsearch_server",
               "springboot2_api_service"
             ],
             "type": "string"
@@ -1830,6 +1839,7 @@
         },
         "allOf": [
           { "$ref": "#/definitions/entities/postgres_test_db" },
+          { "$ref": "#/definitions/entities/elasticsearch_server" },
           { "$ref": "#/definitions/entities/springboot2_api_service" }
         ]
       },
@@ -1849,6 +1859,7 @@
             "description": "The type of this component.",
             "enum":[
               "postgres_test_db",
+              "elasticsearch_server",
               "springboot2_api_service"
             ],
             "type": "string"
@@ -1887,6 +1898,100 @@
         }
         }
       },
+      "elasticsearch_server": {
+        "description": "elasticsearch_server",
+        "if": { "properties": {
+          "type": { "const": "elasticsearch_server" }
+        }},
+        "then": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this component.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of this component.",
+            "enum":[
+              "postgres_test_db",
+              "elasticsearch_server",
+              "springboot2_api_service"
+            ],
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+            "description": "The tags of this component.",
+            "type": "string"
+            }
+          },
+          "instance_name": {
+            "description": "The instance_name of this component.",
+            "type": "string"
+          },
+          "container_image": {
+            "description": "The container_image of this elasticsearch_server.",
+            "type": "string"
+          },
+          "port": {
+            "description": "The port of this elasticsearch_server.",
+            "type": "number"
+          }
+        }
+        }
+      },
+      "datasource_mapping": {
+        "description": "datasource_mapping",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this datasource_mapping.",
+            "type": "string"
+          },
+          "component_name": {
+            "description": "The component_name of this datasource_mapping.",
+            "type": "string"
+          }
+        }
+      },
+      "external_rest_api_mapping": {
+        "description": "external_rest_api_mapping",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this external_rest_api_mapping.",
+            "type": "string"
+          },
+          "external_rest_api_endpoint_name": {
+            "description": "The external_rest_api_endpoint_name of this external_rest_api_mapping.",
+            "type": "string"
+          }
+        }
+      },
+      "search_engine_mapping": {
+        "description": "search_engine_mapping",
+        "type": "object",
+        "required": [
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this search_engine_mapping.",
+            "type": "string"
+          },
+          "component_name": {
+            "description": "The component_name of this search_engine_mapping.",
+            "type": "string"
+          }
+        }
+      },
       "springboot2_api_service": {
         "description": "springboot2_api_service",
         "if": { "properties": {
@@ -1903,6 +2008,7 @@
             "description": "The type of this component.",
             "enum":[
               "postgres_test_db",
+              "elasticsearch_server",
               "springboot2_api_service"
             ],
             "type": "string"
@@ -1974,53 +2080,21 @@
               "$ref": "#/definitions/entities/datasource_mapping"
             }
           },
-          "http_client_settings": {
-            "description": "http_client_settings",
+          "search_engine_mappings": {
+            "description": "search-engine-mappings",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/http_client_setting"
+              "$ref": "#/definitions/entities/search_engine_mapping"
+            }
+          },
+          "external_rest_api_mappings": {
+            "description": "external_rest_api_mappings",
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/entities/external_rest_api_mapping"
             }
           }
         }
-        }
-      },
-      "datasource_mapping": {
-        "description": "datasource_mapping",
-        "type": "object",
-        "required": [
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this datasource_mapping.",
-            "type": "string"
-          },
-          "component_name": {
-            "description": "The component_name of this datasource_mapping.",
-            "type": "string"
-          }
-        }
-      },
-      "http_client_setting": {
-        "description": "http_client_setting",
-        "type": "object",
-        "required": [
-          "name"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "description": "The name of this http_client_setting.",
-            "type": "string"
-          },
-          "base_url": {
-            "description": "The base_url of this http_client_setting.",
-            "type": "string"
-          },
-          "api_key": {
-            "description": "The api_key of this http_client_setting.",
-            "type": "string"
-          }
         }
       },
       "deployment": {
@@ -2166,6 +2240,28 @@
             "items": {
               "$ref": "#/definitions/entities/deployment"
             }
+          }
+        }
+      },
+      "external_rest_api_endpoint": {
+        "description": "external_rest_api_endpoint",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The name of this external_rest_api_endpoint.",
+            "type": "string"
+          },
+          "base_url": {
+            "description": "The base_url of this external_rest_api_endpoint.",
+            "type": "string"
+          },
+          "api_key": {
+            "description": "The api_key of this external_rest_api_endpoint.",
+            "type": "string"
           }
         }
       },
@@ -2327,6 +2423,10 @@
             "description": "The operation_name of this external_rest_api.",
             "type": "string"
           },
+          "rest_client_name": {
+            "description": "The rest_client_name of this external_rest_api.",
+            "type": "string"
+          },
           "relationships": {
             "description": "relationships",
             "type": "array",
@@ -2398,10 +2498,6 @@
           },
           "resource_model_name": {
             "description": "The resource_model_name of this rest_resource.",
-            "type": "string"
-          },
-          "http_client_name": {
-            "description": "The http_client_name of this rest_resource.",
             "type": "string"
           },
           "operations": {
@@ -2547,11 +2643,11 @@
               "$ref": "#/definitions/entities/graphql_type_entry"
             }
           },
-          "http_clients": {
-            "description": "http_clients",
+          "rest_clients": {
+            "description": "rest_clients",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/entities/http_client"
+              "$ref": "#/definitions/entities/rest_client"
             }
           },
           "search_engine_clients": {
@@ -2601,8 +2697,8 @@
           }
         }
       },
-      "http_client": {
-        "description": "http_client",
+      "rest_client": {
+        "description": "rest_client",
         "type": "object",
         "required": [
           "name"
@@ -2610,15 +2706,7 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "description": "The name of this http_client.",
-            "type": "string"
-          },
-          "base_uri": {
-            "description": "The base_uri of this http_client.",
-            "type": "string"
-          },
-          "api_key": {
-            "description": "The api_key of this http_client.",
+            "description": "The name of this rest_client.",
             "type": "string"
           }
         }
@@ -3113,6 +3201,37 @@
           },
           "body": {
             "description": "The body of this comment.",
+            "type": "string"
+          }
+        }
+      },
+      "indexed_comment": {
+        "description": "indexed_comment",
+        "type": "object",
+        "required": [
+          "post_id",
+          "seq_number"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "post_id": {
+            "description": "The post_id of this indexed_comment.",
+            "type": "number"
+          },
+          "seq_number": {
+            "description": "The seq_number of this indexed_comment.",
+            "type": "number"
+          },
+          "name": {
+            "description": "The name of this indexed_comment.",
+            "type": "string"
+          },
+          "email": {
+            "description": "The email of this indexed_comment.",
+            "type": "string"
+          },
+          "body": {
+            "description": "The body of this indexed_comment.",
             "type": "string"
           }
         }

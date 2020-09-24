@@ -11,9 +11,9 @@ import java.util.concurrent.Future
 
 @Component
 class GsheetsSpreadsheetRestResourceClient(
-    @Value("\${http_client.google_sheets_api.base_url}")
+    @Value("\${rest_client.google_sheets_api.base_url}")
     private val baseUrl: String,
-    @Value("\${http_client.google_sheets_api.api_key}")
+    @Value("\${rest_client.google_sheets_api.api_key}")
     private val apiKey: String,
 ): GsheetsSpreadsheetRestResource {
     override fun getSpreadsheetById(

@@ -33,14 +33,6 @@ type Query {
     postId: Int!
     seqNumber: Int!
   ): Comment
-  indexedComments(
-    postId: IntSearchInput
-    seqNumber: IntSearchInput
-    name: String
-    email: String
-    body: String
-  ): [IndexedComment]!
-
   photos(
     id: IntSearchInput
     albumId: IntSearchInput
@@ -112,4 +104,11 @@ type Query {
   gsheetsSpreadsheet(
     spreadsheetId: String!
   ): GsheetsSpreadsheet
+  indexedComments(
+    postId: IntSearchInput
+    seqNumber: IntSearchInput
+    name: String
+    email: String
+    body: String
+  ): [IndexedComment]!
 }
